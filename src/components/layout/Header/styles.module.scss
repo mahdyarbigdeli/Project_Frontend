@@ -1,0 +1,20 @@
+.header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--box-background);
+    color: white;
+    padding: 0em;
+    justify-content: center;
+    padding: 1em 0;
+    img {
+        height: 3.5rem;
+        object-fit: cover;
+        // border-radius: 0.5rem;
+        // mix-blend-mode: multiply;
+    }
+}
