@@ -1,9 +1,17 @@
 "use client";
 import ReduxProvider from "@/@redux/reduxProvider";
+<<<<<<< HEAD
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
+=======
+import useRedirect from "@/hooks/useRedirect";
+import { useEffect } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ToastContainer } from "react-toastify";
+
+>>>>>>> origin/main
 interface IProps {
   children: JSX.Element;
 }

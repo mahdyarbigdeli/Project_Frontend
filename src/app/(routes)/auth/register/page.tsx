@@ -22,7 +22,11 @@ export default function LoginPage() {
 
   const dispatcher = useDispatch();
 
+<<<<<<< HEAD
   const { GoServices } = useRedirect().SUBSCRIPTIONS;
+=======
+  const { GoServices } = useRedirect().SERVICES;
+>>>>>>> origin/main
   const { GoRegister, GoLogin } = useRedirect().AUTH;
 
   const { mutate, isLoading } = useMutation({
