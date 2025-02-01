@@ -11,18 +11,11 @@ export default function useRedirect() {
       GoLogin: () => navigator("/auth/login"),
       GoRegister: () => navigator("/auth/register"),
     },
-<<<<<<< HEAD
-<<<<<<< HEAD
-    SUBSCRIPTIONS: {
-      GoServices: () => navigator("/subscriptions/"),
-=======
     SERVICES: {
       GoServices: () => navigator("/services/"),
->>>>>>> origin/main
-=======
-    SERVICES: {
-      GoServices: () => navigator("/services/"),
->>>>>>> origin/main
     },
+    SUBSCRIPTIONS: {
+      GoServices: () => navigator("/services/"),
+    }
   };
 }

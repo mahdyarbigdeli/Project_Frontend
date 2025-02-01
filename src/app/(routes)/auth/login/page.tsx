@@ -20,15 +20,7 @@ import Flex from "@/components/UI/Flex/Flex";
 export default function LoginPage() {
   const dispatcher = useDispatch();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-  const { GoServices } = useRedirect().SUBSCRIPTIONS;
-=======
   const { GoServices } = useRedirect().SERVICES;
->>>>>>> origin/main
-=======
-  const { GoServices } = useRedirect().SERVICES;
->>>>>>> origin/main
   const { GoRegister } = useRedirect().AUTH;
 
   const { mutate, isLoading } = useMutation({
