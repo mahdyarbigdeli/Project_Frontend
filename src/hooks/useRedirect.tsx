@@ -12,8 +12,13 @@ export default function useRedirect() {
       GoRegister: () => navigator("/auth/register"),
     },
 <<<<<<< HEAD
+<<<<<<< HEAD
     SUBSCRIPTIONS: {
       GoServices: () => navigator("/subscriptions/"),
+=======
+    SERVICES: {
+      GoServices: () => navigator("/services/"),
+>>>>>>> origin/main
 =======
     SERVICES: {
       GoServices: () => navigator("/services/"),
