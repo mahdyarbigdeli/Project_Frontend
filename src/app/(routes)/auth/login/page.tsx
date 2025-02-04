@@ -20,14 +20,14 @@ import Flex from "@/components/UI/Flex/Flex";
 export default function LoginPage() {
   const dispatcher = useDispatch();
 
-  const { GoServices } = useRedirect().SERVICES;
+  const { GoServices } = useRedirect().SUBSCRIPTIONS;
   const { GoRegister } = useRedirect().AUTH;
 
   const { mutate, isLoading } = useMutation({
     mutationFn: LoginAPI,
     onSuccess: (data) => {
-      if (!!data?.data?.user_info.username === false) {
-        GoRegister()
+      if (!!data?.data?.user_info.email === false) {
+        GoRegister();
         console.log(data);
         return;
       }
@@ -41,7 +41,7 @@ export default function LoginPage() {
   const formik = useFormik({
     initialValues: {
       password: "",
-      username: "",
+      email: "",
     } as ILogin,
     onSubmit(values) {
       mutate(values);
@@ -76,12 +76,12 @@ export default function LoginPage() {
             <Grid>
               <Grid>
                 <Field
-                  icon={<Icon icon='mynaui:user-solid' />}
-                  name='username'
+                  icon={<Icon icon='entypo:email' />}
+                  name='email'
                   onChange={handleChange}
-                  title='نام کاربری'
+                  title='ایمیل'
                   type='text'
-                  value={values.username}
+                  value={values.email}
                 />
               </Grid>
               <Grid>

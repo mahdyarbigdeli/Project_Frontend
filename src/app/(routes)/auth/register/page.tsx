@@ -4,8 +4,8 @@ import Field from "@/components/UI/Field/Field";
 import { FormikProvider, useFormik } from "formik";
 
 import { Icon } from "@iconify/react";
-import { LoginAPI } from "@/services/auth/auth.services";
-import { ILogin } from "@/types/auth.types";
+import { LoginAPI, RegisterAPI } from "@/services/auth/auth.services";
+import { ILogin, IRegister } from "@/types/auth.types";
 import Button from "@/components/UI/Button/Button";
 import { useMutation } from "react-query";
 import PageContianer from "@/components/layout/PageContainer/PageContianer";
@@ -22,13 +22,13 @@ export default function LoginPage() {
 
   const dispatcher = useDispatch();
 
-  const { GoServices } = useRedirect().SERVICES;
+  const { GoServices } = useRedirect().SUBSCRIPTIONS;
   const { GoRegister, GoLogin } = useRedirect().AUTH;
 
   const { mutate, isLoading } = useMutation({
-    mutationFn: LoginAPI,
+    mutationFn: RegisterAPI,
     onSuccess: (data) => {
-      if (!!data?.data?.user_info.username === false) {
+      if (!!data?.data?.user_info.email === false) {
         GoRegister();
         return;
       }
@@ -41,14 +41,11 @@ export default function LoginPage() {
 
   const formik = useFormik({
     initialValues: {
-      password: "",
-      username: "",
-    } as ILogin,
+      email: "",
+      period: "",
+    } as IRegister,
     onSubmit(values) {
-      mutate({
-        username: "testuser3",
-        password: "6047579191",
-      });
+      mutate(values);
     },
   });
 
@@ -60,7 +57,7 @@ export default function LoginPage() {
       isLoading={isLoading}>
       <FormikProvider value={formik}>
         <Box
-          header='ثبت نام کاربری'
+          header='ثبت ایمیل'
           icon={<Icon icon='material-symbols:login-sharp' />}
           isFieldSet
           glassMorphism
@@ -80,12 +77,22 @@ export default function LoginPage() {
             <Grid>
               <Grid>
                 <Field
-                  icon={<Icon icon='mynaui:user-solid' />}
+                  icon={<Icon icon='entypo:email' />}
                   name='email'
                   onChange={handleChange}
-                  title='نام کاربری'
+                  title='ایمیل'
                   type='text'
-                  value={values.username}
+                  value={values.email}
+                />
+              </Grid>
+              <Grid>
+                <Field
+                  icon={<Icon icon='fluent:calendar-date-28-filled' />}
+                  name='period'
+                  onChange={handleChange}
+                  title='مدت دوره'
+                  type='text'
+                  value={values.period}
                 />
               </Grid>
               <Grid>

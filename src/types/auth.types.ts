@@ -1,12 +1,17 @@
 import { ColDef } from "@ag-grid-community/core";
 
 export interface ILogin {
-  username: string;
+  email: string;
   password: string;
 }
 
+export interface IRegister {
+  email: string;
+  period : string
+}
+
 export interface IUser {
-  username: string;
+  email: string;
   password: string;
   message: string;
   auth: number;
@@ -17,7 +22,7 @@ export interface IUser {
   created_at: string;
   max_connections: string;
   allowed_output_formats: string[];
-  role : string;
+  role: string;
 }
 
 export const usersColDef: ColDef[] = [
@@ -26,8 +31,8 @@ export const usersColDef: ColDef[] = [
     field: "id",
   },
   {
-    headerName: "نام کاربری",
-    field: "username",
+    headerName: "ایمیل",
+    field: "email",
   },
   {
     headerName: "ایمیل",

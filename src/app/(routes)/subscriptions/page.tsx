@@ -72,8 +72,8 @@ export default function ServicesPage() {
             }}>
             <Grid color='white'>
               <Flex center>
-                <small>نام کاربری : </small>
-                <h3>{user.username}</h3>
+                <small>ایمیل : </small>
+                <h3>{user.email}</h3>
               </Flex>
               <Flex center>
                 <small>رمزعبور : </small>
