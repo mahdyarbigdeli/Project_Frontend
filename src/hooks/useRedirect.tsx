@@ -19,5 +19,8 @@ export default function useRedirect() {
       GoServices: () => navigator("/services/"),
 >>>>>>> origin/main
     },
+    SUBSCRIPTIONS: {
+      GoServices: () => navigator("/services/"),
+    }
   };
 }
