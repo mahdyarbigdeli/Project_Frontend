@@ -28,10 +28,6 @@ export default function LoginPage() {
   const { mutate, isLoading } = useMutation({
     mutationFn: RegisterAPI,
     onSuccess: (data) => {
-      if (!!data?.data?.user_info.email === false) {
-        GoRegister();
-        return;
-      }
       dispatcher(userActions.login(data.data.user_info));
       setTimeout(() => {
         GoServices();
@@ -43,13 +39,14 @@ export default function LoginPage() {
     initialValues: {
       email: "",
       period: "",
+      username: "",
     } as IRegister,
     onSubmit(values) {
       mutate(values);
     },
   });
 
-  const { values, handleChange, submitForm } = formik;
+  const { values, handleChange, submitForm, setFieldValue } = formik;
 
   return (
     <PageContianer
@@ -86,13 +83,38 @@ export default function LoginPage() {
                 />
               </Grid>
               <Grid>
-                <Field
+                <Field<any>
                   icon={<Icon icon='fluent:calendar-date-28-filled' />}
                   name='period'
-                  onChange={handleChange}
+                  onChange={(values) => {
+                    setFieldValue("period", values);
+                  }}
                   title='مدت دوره'
-                  type='text'
+                  type='select'
                   value={values.period}
+                  options={[
+                    {
+                      label: "یک ماهه",
+                      value: "1month",
+                    },
+                    {
+                      label: "شیش ماه",
+                      value: "6month",
+                    },
+                    {
+                      label: "یک ساله",
+                      value: "1year",
+                    },
+                    {
+                      label: "دائمی",
+                      value: "unlimited",
+                    },
+                  ]}
+                  selectKeys={{
+                    label: "label",
+                    value: "value",
+                  }}
+                  selectMode='single'
                 />
               </Grid>
               <Grid>
@@ -110,7 +132,7 @@ export default function LoginPage() {
                   onClick={() => {
                     GoLogin();
                   }}>
-                  <span>ورورد کاربری</span>
+                  <span>ورود کاربری</span>
                 </Flex>
               </Grid>
             </Grid>

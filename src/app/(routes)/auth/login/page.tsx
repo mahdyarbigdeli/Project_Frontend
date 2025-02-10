@@ -26,9 +26,8 @@ export default function LoginPage() {
   const { mutate, isLoading } = useMutation({
     mutationFn: LoginAPI,
     onSuccess: (data) => {
-      if (!!data?.data?.user_info.email === false) {
+      if (!!data?.data?.user_info === false) {
         GoRegister();
-        console.log(data);
         return;
       }
       dispatcher(userActions.login(data.data.user_info));
@@ -42,6 +41,7 @@ export default function LoginPage() {
     initialValues: {
       password: "",
       email: "",
+      username: "",
     } as ILogin,
     onSubmit(values) {
       mutate(values);
@@ -98,7 +98,7 @@ export default function LoginPage() {
                 <Button
                   icon={<Icon icon='formkit:submit' />}
                   onClick={submitForm}
-                  title='وورد به پنل کاربری'
+                  title='ورود به پنل کاربری'
                   variant='danger'
                 />
                 <Flex

@@ -1,5 +1,6 @@
 import { IUser } from "@/types/auth.types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import moment from "moment-jalaali";
 
 const initialState = {};
 
@@ -8,7 +9,10 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     login: (state, { payload }: PayloadAction<IUser>) => {
-      return payload;
+      return {
+        ...payload,
+        // exp_date: moment(parseInt(payload.exp_date) * 1000).toLocaleString(),
+      };
     },
     logout: () => {
       return {};

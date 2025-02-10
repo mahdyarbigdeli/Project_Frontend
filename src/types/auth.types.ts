@@ -7,7 +7,7 @@ export interface ILogin {
 
 export interface IRegister {
   email: string;
-  period : string
+  period: string;
 }
 
 export interface IUser {

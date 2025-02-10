@@ -42,7 +42,7 @@ export default function ServiceCard(props: IProps) {
 
       <h2 className={styles.price}>
         <span> {price}</span>
-        <small>تومان</small>
+        <small>$</small>
       </h2>
 
       <Button

@@ -70,37 +70,51 @@ export default function ServicesPage() {
               height: "max-content",
               display: "flex",
             }}>
-            <Grid color='white'>
-              <Flex center>
-                <small>ایمیل : </small>
-                <h3>{user.email}</h3>
-              </Flex>
-              <Flex center>
-                <small>رمزعبور : </small>
-                <h3>{user.password}</h3>
-              </Flex>
-              <Flex center>
-                <small>تاریخ اتمام اشتراک : </small>
-                <h3>{dateToJalai(parseInt(user.exp_date) * 1000)}</h3>
-              </Flex>
-              <Flex center>
-                {user.active_cons === "0" && (
-                  <Button
-                    icon={<Icon icon='mynaui:danger-diamond-solid' />}
-                    onClick={() => {}}
-                    title='اشتراک شما غبیرفعال میباشد'
-                    variant='danger'
-                  />
-                )}
-                {user.active_cons === "1" && (
-                  <Button
-                    icon={<Icon icon='nrk:check-active' />}
-                    onClick={() => {}}
-                    title='اشتراک شما فعال میباشد'
-                    variant='success'
-                  />
-                )}
-              </Flex>
+            <Grid
+              color='white'
+              gridTemplateColumns={"1fr 1fr"}>
+              <Grid>
+                <Flex
+                  center
+                  flexDirection='column'>
+                  <small>ایمیل : </small>
+                  <h3>{user.email}</h3>
+                </Flex>
+                <Flex
+                  center
+                  flexDirection='column'>
+                  <small>رمزعبور : </small>
+                  <h3>{user.password}</h3>
+                </Flex>
+              </Grid>
+              <Grid>
+                <Flex
+                  center
+                  flexDirection='column'>
+                  {user.active_cons === "0" && (
+                    <Button
+                      icon={<Icon icon='mynaui:danger-diamond-solid' />}
+                      onClick={() => {}}
+                      title='اشتراک شما غبیرفعال میباشد'
+                      variant='danger'
+                    />
+                  )}
+                  {user.active_cons === "1" && (
+                    <Button
+                      icon={<Icon icon='nrk:check-active' />}
+                      onClick={() => {}}
+                      title='اشتراک شما فعال میباشد'
+                      variant='success'
+                    />
+                  )}
+                </Flex>
+                <Flex
+                  center
+                  flexDirection='column'>
+                  <small>تاریخ اتمام اشتراک : </small>
+                  <h3>{dateToJalai(parseInt(user.exp_date) * 1000)}</h3>
+                </Flex>
+              </Grid>
             </Grid>
           </Box>
           <Box
@@ -108,25 +122,36 @@ export default function ServicesPage() {
             isFieldSet
             glassMorphism
             icon={<Icon icon='lsicon:work-order-check-outline' />}>
-            <Grid
-              gridTemplateColumns={"1fr 1fr 1fr 1fr"}
-              gap='2rem'
-              backgroundColor='var(--app-background-color)'
-              borderRadius={"1rem"}
-              padding={"2em"}
-              responsive={{
-                mobile: {
-                  gridTemplateColumns: "1fr",
-                },
-              }}>
-              {data.map((subscription) => {
-                return (
-                  <ServiceCard
-                    key={subscription.id}
-                    {...subscription}
-                  />
-                );
-              })}
+            <Grid>
+              <Grid
+                gridTemplateColumns={"1fr 1fr 1fr 1fr"}
+                gap='2rem'
+                backgroundColor='var(--app-background-color)'
+                borderRadius={"1rem"}
+                padding={"2em"}
+                responsive={{
+                  mobile: {
+                    gridTemplateColumns: "1fr",
+                  },
+                }}>
+                <Flex
+                  gridColumn={"-1/1"}
+                  center
+                  color='white'>
+                  <p>خرید / تمدید اشتراک</p>
+                </Flex>
+
+                <>
+                  {data.map((subscription) => {
+                    return (
+                      <ServiceCard
+                        key={subscription.id}
+                        {...subscription}
+                      />
+                    );
+                  })}
+                </>
+              </Grid>
             </Grid>
           </Box>
         </Grid>

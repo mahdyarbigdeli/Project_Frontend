@@ -82,6 +82,8 @@ export default function FieldSelect<T>(props: Props<T>) {
             outline: "none !important",
             boxShadow: "none !important",
             fontFamily: "iran-sans",
+            textAlign: "right",
+            direction: "rtl",
           };
         },
         menu(base, props) {
@@ -91,6 +93,8 @@ export default function FieldSelect<T>(props: Props<T>) {
             width: "max-content",
             minWidth: "100%",
             fontFamily: "iran-sans",
+            textAlign: "right",
+            direction: "rtl",
           };
         },
         option(base, props) {
@@ -99,23 +103,29 @@ export default function FieldSelect<T>(props: Props<T>) {
             backgroundColor: "transparent",
             color: "var(--color-primary)",
             fontFamily: "iran-sans",
+            textAlign: "right",
+            direction: "rtl",
           };
         },
         placeholder(base, props) {
           return {
             ...base,
             color: "white",
+            textAlign: "right",
+            direction: "rtl",
           };
         },
         singleValue(base, props) {
           return {
             ...base,
             color: "white",
+            textAlign: "right",
+            direction: "rtl",
           };
         },
       }}
       menuPortalTarget={targetPortal as any}
-      isRtl
+      isRtl={true}
     />
   );
 }
