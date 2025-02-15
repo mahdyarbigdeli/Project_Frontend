@@ -117,7 +117,7 @@ export default function LoginPage() {
                         value: "1month",
                       },
                       {
-                        label: "شیش ماه",
+                        label: "شش ماه",
                         value: "6month",
                       },
                       {
