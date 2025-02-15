@@ -72,13 +72,18 @@ export default function ServicesPage() {
             }}>
             <Grid
               color='white'
-              gridTemplateColumns={"1fr 1fr"}>
+              gridTemplateColumns={"1fr 1fr"}
+              responsive={{
+                mobile: {
+                  gridTemplateColumns: "1fr",
+                },
+              }}>
               <Grid>
                 <Flex
                   center
                   flexDirection='column'>
-                  <small>ایمیل : </small>
-                  <h3>{user.email}</h3>
+                  <small>نام کاربری : </small>
+                  <h3>{user.username}</h3>
                 </Flex>
                 <Flex
                   center
@@ -91,7 +96,7 @@ export default function ServicesPage() {
                 <Flex
                   center
                   flexDirection='column'>
-                  {user.active_cons === "0" && (
+                  {user.status !== "Active" && (
                     <Button
                       icon={<Icon icon='mynaui:danger-diamond-solid' />}
                       onClick={() => {}}
@@ -99,7 +104,7 @@ export default function ServicesPage() {
                       variant='danger'
                     />
                   )}
-                  {user.active_cons === "1" && (
+                  {user.status === "Active" && (
                     <Button
                       icon={<Icon icon='nrk:check-active' />}
                       onClick={() => {}}
@@ -112,7 +117,12 @@ export default function ServicesPage() {
                   center
                   flexDirection='column'>
                   <small>تاریخ اتمام اشتراک : </small>
-                  <h3>{dateToJalai(parseInt(user.exp_date) * 1000)}</h3>
+                  {/* (parseInt(user.exp_date) * 1000) as any) */}
+                  <h3>
+                    {moment(parseInt(user.exp_date) * 1000).format(
+                      "YYYY-MM-DD",
+                    )}
+                  </h3>
                 </Flex>
               </Grid>
             </Grid>
@@ -140,8 +150,15 @@ export default function ServicesPage() {
                   color='white'>
                   <p>خرید / تمدید اشتراک</p>
                 </Flex>
-
-                <>
+                <Grid
+                  width={"100%"}
+                  gridTemplateColumns={"1fr 1fr 1fr 1fr"}
+                  gridColumn={"-1/1"}
+                  flexDirection='row'
+                  gap='1rem'
+                  maxHeight={"19rem"}
+                  overflowY='auto'
+                  overflowX='hidden'>
                   {data.map((subscription) => {
                     return (
                       <ServiceCard
@@ -150,7 +167,7 @@ export default function ServicesPage() {
                       />
                     );
                   })}
-                </>
+                </Grid>
               </Grid>
             </Grid>
           </Box>

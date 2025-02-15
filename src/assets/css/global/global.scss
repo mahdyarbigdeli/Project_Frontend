@@ -2,6 +2,10 @@
     font-family: iran-sans;
     src: url("/fonts/IRAN-SANS/IRANSans\(FaNum\).ttf");
 }
+@font-face {
+    font-family: iran-sans-latin-num;
+    src: url("/fonts/IRAN-SANS/iran-sans-normal.ttf");
+}
 
 .App {
     height: 100dvh;
@@ -16,7 +20,7 @@
     padding: 0;
     list-style: none;
     text-decoration: none;
-    font-family: iran-sans;
+    font-family: iran-sans-latin-num;
 }
 
 .swal2-container {

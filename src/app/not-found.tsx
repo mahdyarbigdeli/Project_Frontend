@@ -10,8 +10,8 @@ export default function NotFound() {
   const {SUBSCRIPTIONS,AUTH} = useRedirect()
 
   useEffect(() => {
-    if (!user.role) AUTH.GoLogin();
-    if (user.role) SUBSCRIPTIONS.GoServices();
+    if (!user.username) AUTH.GoLogin();
+    if (user.username) SUBSCRIPTIONS.GoServices();
   }, []);
   return <div>404</div>;
 }

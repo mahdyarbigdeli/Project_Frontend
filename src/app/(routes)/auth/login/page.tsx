@@ -16,7 +16,8 @@ import Grid from "@/components/UI/Grid/Grid";
 import Box from "@/components/UI/Box/Box";
 import useRedirect from "@/hooks/useRedirect";
 import Flex from "@/components/UI/Flex/Flex";
-
+import * as yup from "yup";
+import { ShowSuccess } from "@/components/UI/Toast/toast";
 export default function LoginPage() {
   const dispatcher = useDispatch();
 
@@ -26,7 +27,8 @@ export default function LoginPage() {
   const { mutate, isLoading } = useMutation({
     mutationFn: LoginAPI,
     onSuccess: (data) => {
-      if (!!data?.data?.user_info === false) {
+      if (!!data?.data?.user_info?.username === false) {
+        ShowSuccess("لطفا ثبت نام کنید.")
         GoRegister();
         return;
       }
@@ -46,9 +48,16 @@ export default function LoginPage() {
     onSubmit(values) {
       mutate(values);
     },
+    validationSchema: yup.object({
+      email: yup
+        .string()
+        .email("باید به فرمت ایمیل باشد")
+        .required("ایمیل الزامی است"),
+      password: yup.string().required("رمز عبور الزامی است"),
+    }),
   });
 
-  const { values, handleChange, submitForm } = formik;
+  const { values, handleChange, submitForm, errors } = formik;
 
   return (
     <PageContianer
@@ -62,7 +71,7 @@ export default function LoginPage() {
           glassMorphism
           style={{
             width: "90dvw",
-            maxWidth: "max-content",
+            maxWidth: "25rem",
           }}>
           <Grid
             gap='1rem'
@@ -82,6 +91,9 @@ export default function LoginPage() {
                   title='ایمیل'
                   type='text'
                   value={values.email}
+                  validation={{
+                    message: errors.email,
+                  }}
                 />
               </Grid>
               <Grid>
@@ -92,6 +104,9 @@ export default function LoginPage() {
                   title='رمزعبور'
                   type='password'
                   value={values.password}
+                  validation={{
+                    message: errors.password,
+                  }}
                 />
               </Grid>
               <Grid>

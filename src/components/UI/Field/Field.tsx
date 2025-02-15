@@ -5,7 +5,7 @@ import { useRef } from "react";
 
 import "./styles.module.scss";
 import ReactSwitch from "react-switch";
-import {Checkbox} from "@mui/joy";
+import { Checkbox } from "@mui/joy";
 
 import { genericMemo } from "@/utils/Generator";
 import styles from "./styles.module.scss";
@@ -349,7 +349,7 @@ function Component<T>(props: IFieldType<T>) {
     if (!tooltip) {
       return (
         <div className={styles.errorBox}>
-          <Icon icon='warning' />
+          <Icon icon='ph:warning-fill' />
           <span> {validation?.message}</span>
         </div>
       );
