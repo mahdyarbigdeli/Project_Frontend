@@ -100,7 +100,7 @@ export default function ServicesPage() {
                     <Button
                       icon={<Icon icon='mynaui:danger-diamond-solid' />}
                       onClick={() => {}}
-                      title='اشتراک شما غبیرفعال میباشد'
+                      title='اشتراک شما غبیرفعال می‌باشد'
                       variant='danger'
                     />
                   )}
@@ -108,7 +108,7 @@ export default function ServicesPage() {
                     <Button
                       icon={<Icon icon='nrk:check-active' />}
                       onClick={() => {}}
-                      title='اشتراک شما فعال میباشد'
+                      title='اشتراک شما فعال می‌باشد'
                       variant='success'
                     />
                   )}
