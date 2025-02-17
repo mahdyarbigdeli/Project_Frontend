@@ -2,6 +2,12 @@ import Configs from "./(routes)/Configs";
 
 import "@/assets/css/global/global.scss";
 import "@/assets/css/colors/colors.scss";
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+
 import Header from "@/components/layout/Header/Header";
 
 export const metadata = {

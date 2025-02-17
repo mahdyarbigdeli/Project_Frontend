@@ -1,0 +1,70 @@
+.container {
+    display: grid;
+    height: 100%;
+    position: relative;
+}
+
+.slider {
+    min-width: 100%;
+    max-width: 100%;
+}
+
+.arrows {
+    z-index: 9999 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: white;
+    margin: auto;
+    font-size: 2.5rem;
+    width: max-content;
+    align-items: center;
+    border-radius: 100rem;
+    user-select: none;
+    background-color: rgba(0, 0, 0, 0.4);
+    margin-top: 2rem !important;
+
+    svg {
+        transition: all 1s ease !important;
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        color: white;
+    }
+    div {
+        display: flex;
+        transition: all 1s ease !important;
+    }
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.disable {
+    opacity: 0.25;
+}
+
+.active {
+    opacity: 1 !important;
+    background-color: rebeccapurple;
+}
+
+.bullet {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    scale: 2;
+    transition: all 1s ease;
+    --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 7a5 5 0 1 1-4.995 5.217L7 12l.005-.217A5 5 0 0 1 12 7'/%3E%3C/svg%3E");
+    background-color: currentColor;
+    -webkit-mask-image: var(--svg);
+    mask-image: var(--svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+}

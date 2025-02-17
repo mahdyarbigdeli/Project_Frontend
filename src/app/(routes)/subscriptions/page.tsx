@@ -12,8 +12,11 @@ import useGlobalStates from "@/@redux/hooks/useGlobalStates";
 import moment from "moment-jalaali";
 import { dateToJalai } from "@/utils/Converters";
 import { ISubscirption } from "@/types/subscription.types";
-
-export default function ServicesPage() {
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import useViewSize from "@/hooks/useViewSize";
+import Slider from "@/components/UI/Slider/Slider";
+export default function SubScriptionsPage() {
   const { user } = useGlobalStates();
 
   const {
@@ -37,6 +40,8 @@ export default function ServicesPage() {
     initialSearchs: {},
     initialSorts: {},
   });
+
+  const { isDesktop, isMobile } = useViewSize();
 
   return (
     <PageContianer
@@ -100,7 +105,7 @@ export default function ServicesPage() {
                     <Button
                       icon={<Icon icon='mynaui:danger-diamond-solid' />}
                       onClick={() => {}}
-                      title='اشتراک شما غبیرفعال می‌باشد'
+                      title='اشتراک شما غبیرفعال میباشد'
                       variant='danger'
                     />
                   )}
@@ -108,7 +113,7 @@ export default function ServicesPage() {
                     <Button
                       icon={<Icon icon='nrk:check-active' />}
                       onClick={() => {}}
-                      title='اشتراک شما فعال می‌باشد'
+                      title='اشتراک شما فعال میباشد'
                       variant='success'
                     />
                   )}
@@ -134,7 +139,7 @@ export default function ServicesPage() {
             icon={<Icon icon='lsicon:work-order-check-outline' />}>
             <Grid>
               <Grid
-                gridTemplateColumns={"1fr 1fr 1fr 1fr"}
+                gridTemplateColumns={"1fr"}
                 gap='2rem'
                 backgroundColor='var(--app-background-color)'
                 borderRadius={"1rem"}
@@ -150,24 +155,48 @@ export default function ServicesPage() {
                   color='white'>
                   <p>خرید / تمدید اشتراک</p>
                 </Flex>
-                <Grid
-                  width={"100%"}
-                  gridTemplateColumns={"1fr 1fr 1fr 1fr"}
-                  gridColumn={"-1/1"}
-                  flexDirection='row'
-                  gap='1rem'
-                  maxHeight={"19rem"}
-                  overflowY='auto'
-                  overflowX='hidden'>
-                  {data.map((subscription) => {
-                    return (
-                      <ServiceCard
-                        key={subscription.id}
-                        {...subscription}
-                      />
-                    );
-                  })}
-                </Grid>
+
+                <>
+                  {isMobile && (
+                    <Grid
+                      width={"100%"}
+                      gridTemplateColumns={"1fr"}
+                      gridColumn={"-1/1"}
+                      flexDirection='row'
+                      gap='1rem'>
+                      {data.map((subscription) => {
+                        return (
+                          <ServiceCard
+                            key={subscription.id}
+                            {...subscription}
+                          />
+                        );
+                      })}
+                    </Grid>
+                  )}
+                </>
+
+                <>
+                  {isDesktop && (
+                    <Flex
+                      width={"100%"}
+                      gridColumn={"-1/1"}
+                      maxWidth={"70rem"}>
+                      <Slider>
+                        {data.map((subscription) => {
+                          return (
+                            <SwiperSlide key={subscription.id}>
+                              <ServiceCard
+                                key={subscription.id}
+                                {...subscription}
+                              />
+                            </SwiperSlide>
+                          );
+                        })}
+                      </Slider>
+                    </Flex>
+                  )}
+                </>
               </Grid>
             </Grid>
           </Box>
