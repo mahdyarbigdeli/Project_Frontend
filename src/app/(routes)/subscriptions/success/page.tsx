@@ -6,9 +6,19 @@ import Flex from "@/components/UI/Flex/Flex";
 import Grid from "@/components/UI/Grid/Grid";
 import useRedirect from "@/hooks/useRedirect";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { useEffect } from "react";
 
 export default function Page() {
-  const { SUBSCRIPTIONS } = useRedirect();
+  const { SUBSCRIPTIONS, PUBLIC } = useRedirect();
+
+  useEffect(() => {
+    const debouce = setTimeout(() => {
+      PUBLIC.GoHome();
+    }, 30000);
+
+    return () => clearTimeout(debouce);
+  }, []);
+
   return (
     <PageContianer title='خرید موفق'>
       <Grid

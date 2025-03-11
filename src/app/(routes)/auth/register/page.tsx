@@ -18,29 +18,36 @@ import useRedirect from "@/hooks/useRedirect";
 import Flex from "@/components/UI/Flex/Flex";
 import * as yup from "yup";
 import { ShowSuccess } from "@/components/UI/Toast/toast";
+import Swal from "sweetalert2";
 export default function LoginPage() {
-  const { user } = useGlobalStates();
-
   const dispatcher = useDispatch();
 
   const { GoServices } = useRedirect().SUBSCRIPTIONS;
-  const { GoRegister, GoLogin } = useRedirect().AUTH;
+  const { GoLogin } = useRedirect().AUTH;
 
   const { mutate, isLoading } = useMutation({
     mutationFn: RegisterAPI,
     onSuccess: (data) => {
       ShowSuccess("رمزعبور به ایمیل شما ارسال شده است.");
       dispatcher(userActions.login(data.data.user_info));
-      setTimeout(() => {
+
+      Swal.fire({
+        text: "رمزعبور به ایمیل شما ارسال گردید",
+        icon: "success",
+        confirmButtonText: "تایید",
+      }).then((res) => {
         GoServices();
-      }, 2000);
+      });
     },
   });
 
   const formik = useFormik({
     initialValues: {
       email: "",
-      period: "",
+      period: {
+        label: "یک ماهه",
+        value: "1month",
+      } as any,
       username: "",
     } as IRegister,
     onSubmit(values) {
@@ -93,7 +100,7 @@ export default function LoginPage() {
                     icon={<Icon icon='entypo:email' />}
                     name='email'
                     onChange={handleChange}
-                    title='ایمیل'
+                    title='نام کاربری'
                     type='text'
                     value={values.email}
                     validation={{
@@ -101,7 +108,7 @@ export default function LoginPage() {
                     }}
                   />
                 </Grid>
-                <Grid>
+                {/* <Grid>
                   <Field<any>
                     icon={<Icon icon='fluent:calendar-date-28-filled' />}
                     name='period'
@@ -138,7 +145,7 @@ export default function LoginPage() {
                       message: errors.period,
                     }}
                   />
-                </Grid>
+                </Grid> */}
                 <Grid>
                   <Button
                     icon={<Icon icon='formkit:submit' />}

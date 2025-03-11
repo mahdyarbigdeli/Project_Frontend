@@ -1,11 +1,15 @@
 "use client";
 
 import Field from "@/components/UI/Field/Field";
-import { FormikProvider, useFormik, Form } from "formik";
+import { Form, FormikProvider, useFormik } from "formik";
 
 import { Icon } from "@iconify/react";
-import { LoginAPI, SendPasswordForgetAPI } from "@/services/auth/auth.services";
-import { ILogin } from "@/types/auth.types";
+import {
+  LoginAPI,
+  RegisterAPI,
+  SendPasswordForgetAPI,
+} from "@/services/auth/auth.services";
+import { ILogin, IRegister } from "@/types/auth.types";
 import Button from "@/components/UI/Button/Button";
 import { useMutation } from "react-query";
 import PageContianer from "@/components/layout/PageContainer/PageContianer";
@@ -17,56 +21,62 @@ import Box from "@/components/UI/Box/Box";
 import useRedirect from "@/hooks/useRedirect";
 import Flex from "@/components/UI/Flex/Flex";
 import * as yup from "yup";
-import { ShowError, ShowSuccess } from "@/components/UI/Toast/toast";
+import { ShowSuccess } from "@/components/UI/Toast/toast";
+import Swal from "sweetalert2";
 export default function LoginPage() {
   const dispatcher = useDispatch();
 
   const { GoServices } = useRedirect().SUBSCRIPTIONS;
-  const { GoRegister, GoPasswordForgotten } = useRedirect().AUTH;
+  const { GoLogin } = useRedirect().AUTH;
 
   const { mutate, isLoading } = useMutation({
-    mutationFn: LoginAPI,
+    mutationFn: SendPasswordForgetAPI,
     onSuccess: (data) => {
-      if (!!data?.data?.user_info?.username === false) {
-        ShowSuccess("لطفا ثبت نام کنید.");
-        GoRegister();
-        return;
-      }
-      dispatcher(userActions.login(data.data.user_info));
-      setTimeout(() => {
+      ShowSuccess("رمزعبور به ایمیل شما ارسال شده است.");
+      Swal.fire({
+        text: "رمزعبور به ایمیل شما ارسال گردید",
+        icon: "success",
+        confirmButtonText: "تایید",
+      }).then((res) => {
         GoServices();
-      }, 200);
+      });
     },
   });
 
   const formik = useFormik({
     initialValues: {
-      password: "",
       email: "",
+      period: {
+        label: "یک ماهه",
+        value: "1month",
+      } as any,
       username: "",
-    } as ILogin,
+    } as IRegister,
     onSubmit(values) {
-      mutate(values);
+      mutate(values.email);
     },
     validationSchema: yup.object({
       email: yup
         .string()
         .email("باید به فرمت ایمیل باشد")
         .required("ایمیل الزامی است"),
-      password: yup.string().required("رمز عبور الزامی است"),
+      period: yup.mixed().required("مدت دوره الزامی است"),
     }),
   });
 
-  const { values, handleChange, submitForm, errors } = formik;
+  const { values, handleChange, submitForm, setFieldValue, errors } = formik;
 
   return (
     <PageContianer
-      title='صفحه ورود'
+      title='صفحه ثبت نام'
       isLoading={isLoading}>
       <FormikProvider value={formik}>
-        <Form onSubmit={(e) => e.preventDefault()}>
+        <Form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}>
           <Box
-            header='ورود کاربری'
+            header='ثبت ایمیل'
             icon={<Icon icon='material-symbols:login-sharp' />}
             isFieldSet
             glassMorphism
@@ -76,7 +86,7 @@ export default function LoginPage() {
             }}>
             <Grid
               gap='1rem'
-              gridTemplateColumns={"  20rem "}
+              gridTemplateColumns={"20rem"}
               alignItems='center'
               responsive={{
                 mobile: {
@@ -97,30 +107,49 @@ export default function LoginPage() {
                     }}
                   />
                 </Grid>
-                <Grid>
-                  <Field
-                    icon={<Icon icon='mdi:password' />}
-                    name='password'
-                    onChange={handleChange}
-                    title='رمزعبور'
-                    type='password'
-                    value={values.password}
+                {/* <Grid>
+                  <Field<any>
+                    icon={<Icon icon='fluent:calendar-date-28-filled' />}
+                    name='period'
+                    onChange={(values) => {
+                      setFieldValue("period", values);
+                    }}
+                    title='مدت دوره'
+                    type='select'
+                    value={values.period}
+                    options={[
+                      {
+                        label: "یک ماهه",
+                        value: "1month",
+                      },
+                      {
+                        label: "شیش ماه",
+                        value: "6month",
+                      },
+                      {
+                        label: "یک ساله",
+                        value: "1year",
+                      },
+                      {
+                        label: "دائمی",
+                        value: "unlimited",
+                      },
+                    ]}
+                    selectKeys={{
+                      label: "label",
+                      value: "value",
+                    }}
+                    selectMode='single'
                     validation={{
-                      message: errors.password,
+                      message: errors.period,
                     }}
                   />
-                </Grid>
-                <Grid
-                  color='white'
-                  textAlign='right'
-                  cursor='pointer'>
-                  <p onClick={GoPasswordForgotten}>فراموشی رمز عبور</p>
-                </Grid>
+                </Grid> */}
                 <Grid>
                   <Button
                     icon={<Icon icon='formkit:submit' />}
                     onClick={submitForm}
-                    title='ورود به پنل کاربری'
+                    title='تایید'
                     variant='danger'
                   />
                   <Flex
@@ -129,9 +158,9 @@ export default function LoginPage() {
                     center
                     cursor='pointer'
                     onClick={() => {
-                      GoRegister();
+                      GoLogin();
                     }}>
-                    <span>ثبت نام</span>
+                    <span>ورود کاربری</span>
                   </Flex>
                 </Grid>
               </Grid>

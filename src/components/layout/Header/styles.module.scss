@@ -1,8 +1,8 @@
 .header {
     display: flex;
-    align-items: center;
     gap: 1rem;
     position: fixed;
+    align-items: center;
     top: 0;
     left: 0;
     right: 0;
@@ -11,11 +11,41 @@
     padding: 0em;
     justify-content: center;
     padding: 1em 0;
+
+    .logOut {
+        // justify-self: end;
+        margin-right: auto;
+        display: flex;
+        align-items: center;
+        height: max-content;
+        margin-left: 1rem;
+    }
+    .logo {
+        margin-right: auto;
+        position: sticky;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
     img {
         height: 3.5rem;
         object-fit: cover;
-        // border-radius: 0.5rem;
-        // mix-blend-mode: multiply;
     }
     z-index: 2;
+}
+
+@media only screen and (max-width: 500px) {
+    .header {
+        padding: 0.5em 1em;
+        .logo {
+            position: relative;
+            margin-right: initial;
+            left: initial;
+            transform: initial;
+        }
+        .logOut {
+            padding: 0.75em 1em !important;
+            margin-left: initial;
+        }
+    }
 }

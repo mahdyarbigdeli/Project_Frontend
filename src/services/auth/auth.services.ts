@@ -4,7 +4,7 @@ import axiosConfig from "@/utils/axiosConfig";
 
 const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-const { login, users, register } = apiRoutes.auth;
+const { login, users, register, channels, passwordForgot } = apiRoutes.auth;
 
 const { postRequest, getRequest } = axiosConfig;
 
@@ -30,4 +30,10 @@ export const RegisterAPI = (data: IRegister) => {
 
 export const GetAllUsersAPI = (params: any) => {
   return getRequest<any[]>(`${NEXT_PUBLIC_API_URL}${users.list}`, params);
+};
+
+export const SendPasswordForgetAPI = (email: string) => {
+  return postRequest(`${NEXT_PUBLIC_API_URL}${passwordForgot}`, {
+    email : email,
+  });
 };

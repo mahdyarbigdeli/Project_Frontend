@@ -3,10 +3,10 @@ import Configs from "./(routes)/Configs";
 import "@/assets/css/global/global.scss";
 import "@/assets/css/colors/colors.scss";
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 import Header from "@/components/layout/Header/Header";
 
@@ -23,8 +23,8 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className='App'>
-        <Header/>
         <Configs>
+          <Header />
           <>{children}</>
         </Configs>
       </body>

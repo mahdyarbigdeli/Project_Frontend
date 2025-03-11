@@ -9,7 +9,7 @@ import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 interface IProps {
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
 }
 
 const queryClient = new QueryClient({
@@ -26,7 +26,7 @@ export default function Configs({ children }: IProps) {
     <ReduxProvider>
       <QueryClientProvider client={queryClient}>
         <>{children}</>
-        <AuthChecker/>
+        <AuthChecker />
         <ToastContainer autoClose={2000} />
       </QueryClientProvider>
     </ReduxProvider>

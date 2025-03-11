@@ -156,47 +156,26 @@ export default function SubScriptionsPage() {
                   <p>خرید / تمدید اشتراک</p>
                 </Flex>
 
-                <>
-                  {isMobile && (
-                    <Grid
-                      width={"100%"}
-                      gridTemplateColumns={"1fr"}
-                      gridColumn={"-1/1"}
-                      flexDirection='row'
-                      gap='1rem'>
-                      {data.map((subscription) => {
-                        return (
-                          <ServiceCard
-                            key={subscription.id}
-                            {...subscription}
-                          />
-                        );
-                      })}
-                    </Grid>
-                  )}
-                </>
-
-                <>
-                  {isDesktop && (
-                    <Flex
-                      width={"100%"}
-                      gridColumn={"-1/1"}
-                      maxWidth={"70rem"}>
-                      <Slider>
-                        {data.map((subscription) => {
-                          return (
-                            <SwiperSlide key={subscription.id}>
-                              <ServiceCard
-                                key={subscription.id}
-                                {...subscription}
-                              />
-                            </SwiperSlide>
-                          );
-                        })}
-                      </Slider>
-                    </Flex>
-                  )}
-                </>
+                <Grid
+                  width={"100%"}
+                  gridColumn={"-1/1"}
+                  display='flex'
+                  flexDirection='row-reverse'
+                  gap='1rem'
+                  responsive={{
+                    mobile: {
+                      flexDirection: "column-reverse",
+                    },
+                  }}>
+                  {data.filter(item=>item.id !== 4).map((subscription) => {
+                    return (
+                      <ServiceCard
+                        key={subscription.id}
+                        {...subscription}
+                      />
+                    );
+                  })}
+                </Grid>
               </Grid>
             </Grid>
           </Box>
