@@ -1,8 +1,7 @@
-
-
 export interface ISubscirption {
   id: number;
   user_id: null;
+  name_en: string;
   name: string;
   price: string;
   paypal_subscription_id: null;

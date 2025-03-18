@@ -21,6 +21,7 @@ export default function ServiceCard(props: IProps) {
     start_date,
     updated_at,
     user_id,
+    name_en
   } = props;
 
   const {
@@ -38,7 +39,7 @@ export default function ServiceCard(props: IProps) {
   return (
     <div className={styles.card}>
       <h1 className={styles.title}>{name}</h1>
-      <p className={styles.subscription}>{name}</p>
+      <p className={styles.subscription}>{name_en}</p>
 
       <h2 className={styles.price}>
         <span> {price}</span>

@@ -167,7 +167,7 @@ export default function SubScriptionsPage() {
                       flexDirection: "column-reverse",
                     },
                   }}>
-                  {data.filter(item=>item.id !== 4).map((subscription) => {
+                  {data.map((subscription) => {
                     return (
                       <ServiceCard
                         key={subscription.id}
