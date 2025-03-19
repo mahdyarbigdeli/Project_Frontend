@@ -6,11 +6,14 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import styles from "./styles.module.scss";
 import { ISubscirption } from "@/types/subscription.types";
 import { useMutation } from "react-query";
-import { BuySubscriptionAPI } from "@/services/subscriptions/subscriptions.services";
+import { BuySubscriptionAPI, CreatePaymentAPI } from "@/services/subscriptions/subscriptions.services";
+import useGlobalStates from "@/@redux/hooks/useGlobalStates";
 
 interface IProps extends ISubscirption {}
 
 export default function ServiceCard(props: IProps) {
+  const { user } = useGlobalStates();
+
   const {
     created_at,
     end_date,
@@ -21,18 +24,18 @@ export default function ServiceCard(props: IProps) {
     start_date,
     updated_at,
     user_id,
-    name_en
+    name_en,
   } = props;
 
   const {
     isLoading,
     error,
-    mutate: BugSubscriptionMutate,
+    mutate: CreatePaymentMutate,
   } = useMutation({
-    mutationFn: BuySubscriptionAPI,
+    mutationFn: CreatePaymentAPI,
     onSuccess(data: any, variables, context) {
       const { redirect_url } = data;
-      window.location.assign(redirect_url)
+      window.location.assign(redirect_url);
     },
   });
 
@@ -49,7 +52,10 @@ export default function ServiceCard(props: IProps) {
       <Button
         icon={<Icon icon='icon-park-solid:buy' />}
         onClick={() => {
-          BugSubscriptionMutate(id);
+          CreatePaymentMutate({
+            username: user.username,
+            id: id,
+          });
         }}
         title='خرید اشتراک'
         variant='danger'
