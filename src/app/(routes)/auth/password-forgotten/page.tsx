@@ -58,8 +58,8 @@ export default function LoginPage() {
     validationSchema: yup.object({
       email: yup
         .string()
-        .email("باید به فرمت ایمیل باشد")
-        .required("ایمیل الزامی است"),
+        // .email("باید به فرمت ایمیل باشد")
+        .required("نام کاربری الزامی است."),
       period: yup.mixed().required("مدت دوره الزامی است"),
     }),
   });

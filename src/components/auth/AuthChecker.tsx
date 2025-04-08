@@ -7,7 +7,6 @@ export default function AuthChecker() {
   const location = usePathname();
 
 
-  console.log(user.username)
 
   useEffect(() => {
     if (user.username) return;

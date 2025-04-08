@@ -6,26 +6,19 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import styles from "./styles.module.scss";
 import { ISubscirption } from "@/types/subscription.types";
 import { useMutation } from "react-query";
-import { BuySubscriptionAPI, CreatePaymentAPI } from "@/services/subscriptions/subscriptions.services";
+import {
+  BuySubscriptionAPI,
+  CreatePaymentAPI,
+} from "@/services/subscriptions/subscriptions.services";
 import useGlobalStates from "@/@redux/hooks/useGlobalStates";
+import PayPalButton from "@/components/PayPal/PayPalButton";
 
 interface IProps extends ISubscirption {}
 
 export default function ServiceCard(props: IProps) {
   const { user } = useGlobalStates();
 
-  const {
-    created_at,
-    end_date,
-    id,
-    name,
-    paypal_subscription_id,
-    price,
-    start_date,
-    updated_at,
-    user_id,
-    name_en,
-  } = props;
+  const { id, name, price, name_en } = props;
 
   const {
     isLoading,
@@ -61,6 +54,8 @@ export default function ServiceCard(props: IProps) {
         variant='danger'
         isLoading={isLoading}
       />
+
+      {/* <PayPalButton /> */}
 
       <img
         className={styles.paypal}

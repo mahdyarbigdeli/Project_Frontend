@@ -49,10 +49,7 @@ export default function LoginPage() {
       mutate(values);
     },
     validationSchema: yup.object({
-      email: yup
-        .string()
-        .email("باید به فرمت ایمیل باشد")
-        .required("ایمیل الزامی است"),
+      email: yup.string().required("ایمیل الزامی است"),
       password: yup.string().required("رمز عبور الزامی است"),
     }),
   });

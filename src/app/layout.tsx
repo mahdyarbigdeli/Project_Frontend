@@ -22,6 +22,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
+      {/* <Script
+        src='https://www.paypal.com/sdk/js?client-id=BAAxZ8X6Jrip-0ZbGzxyX2RQAC5PWapiFLZdprn8jIAXMFUUjFKI8YnuJqhbE0tolJ-FMavoXfDaUB6wUA&components=hosted-buttons&disable-funding=venmo&currency=USD'
+        crossOrigin='anonymous'
+        async></Script> */}
+
       <body className='App'>
         <Configs>
           <Header />
