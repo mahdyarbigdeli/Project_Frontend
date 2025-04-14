@@ -62,7 +62,13 @@ const postRequest = async <T>(
   data?: any,
   otherConfigs?: AxiosRequestConfig,
 ): Promise<IResponseAxios<T>> => {
-  const res = await axios.post(url, data, otherConfigs);
+  const res = await axios.post(url, data, {
+    ...otherConfigs,
+    headers: {
+      ...otherConfigs?.headers,
+      "Content-Type": "multipart/form-data",
+    },
+  });
   return res as any;
 };
 

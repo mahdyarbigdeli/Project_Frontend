@@ -6,7 +6,7 @@ import { redirect, usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
-// import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -34,7 +34,7 @@ export default function Configs({ children }: IProps) {
   };
 
   return (
-    // <PayPalScriptProvider options={initialOptions}>
+    <PayPalScriptProvider options={initialOptions}>
       <ReduxProvider>
         <QueryClientProvider client={queryClient}>
           <>{children}</>
@@ -42,6 +42,6 @@ export default function Configs({ children }: IProps) {
           <ToastContainer autoClose={2000} />
         </QueryClientProvider>
       </ReduxProvider>
-    // </PayPalScriptProvider>
+    </PayPalScriptProvider>
   );
 }

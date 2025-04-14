@@ -18,7 +18,8 @@ const apiRoutes = {
     createPayment: "/create-payment",
   },
   paypal: {
-    capturePayment: "/capture-payment",
+    create_payment: "/capture-payment",
+    create_order: "/paypal/create-order",
   },
 };
 

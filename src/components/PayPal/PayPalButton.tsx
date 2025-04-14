@@ -1,35 +1,41 @@
-"use client";
+import { PayPalCreateOrderAPI } from "@/services/paypal/paypal.services";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+const NEXT_PUBLIC_APP_PAYPAL_CLIENT_ID = process.env
+  .NEXT_PUBLIC_APP_PAYPAL_CLIENT_ID as string;
 
-// import { PayPalButtons } from "@paypal/react-paypal-js";
+const PayPalCheckout = () => {
+  return (
+    <PayPalScriptProvider
+      options={{
+        clientId: NEXT_PUBLIC_APP_PAYPAL_CLIENT_ID,
+        currency: "USD",
+      }}>
+      <PayPalButtons
+        style={{
+          layout: "vertical",
+          color: "gold",
+          shape: "rect",
+          label: "paypal",
+        }}
+        createOrder={async () => {
+          const res: any = await PayPalCreateOrderAPI({
+            currency: "USD",
+            name: "lifetme",
+            price: 20,
+            sku: "lifetme",
+          });
 
-export default function PayPalButton() {
-  return;
-  // return (
-  //   <PayPalButtons 
-  //     createOrder={(props, actions) => {
-  //       return actions.order
-  //         .create({
-  //           purchase_units: [
-  //             {
-  //               amount: {
-  //                 currency_code: "USD",
-  //                 value: "599",
-  //               },
-  //               items: [
-  //                 {
-  //                   name: "Lifetime Subscription",
-  //                   quantity: "1",
-  //                   unit_amount: { currency_code: "USD", value: "599" },
-  //                 },
-  //               ],
-  //             },
-  //           ],
-  //           intent: "CAPTURE",
-  //         })
-  //         .then((err) => {
-  //           console.log("error => ", err);
-  //           return err;
-  //         });
-  //     }}></PayPalButtons>
-  // );
-}
+          return res.order_id; // return the PayPal order ID
+        }}
+        onApprove={async (data, actions) => {
+          // order capture logic here
+        }}
+        onError={(error) => {
+          console.log(error);
+        }}
+      />
+    </PayPalScriptProvider>
+  );
+};
+
+export default PayPalCheckout;

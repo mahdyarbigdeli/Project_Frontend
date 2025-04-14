@@ -55,7 +55,7 @@ export default function ServiceCard(props: IProps) {
         isLoading={isLoading}
       />
 
-      {/* <PayPalButton /> */}
+      <PayPalButton />
 
       <img
         className={styles.paypal}

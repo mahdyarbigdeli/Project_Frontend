@@ -12,8 +12,9 @@ export const LoginAPI = (data: ILogin) => {
   const url = `${NEXT_PUBLIC_API_URL}${login}`;
   return postRequest<any>(url, null, {
     params: {
-      ...data,
       username: data.email,
+      email: data.email,
+      password: data.password,
     },
   });
 };
@@ -34,6 +35,6 @@ export const GetAllUsersAPI = (params: any) => {
 
 export const SendPasswordForgetAPI = (email: string) => {
   return postRequest(`${NEXT_PUBLIC_API_URL}${passwordForgot}`, {
-    email : email,
+    email: email,
   });
 };

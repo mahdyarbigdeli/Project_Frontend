@@ -33,6 +33,7 @@ export default function LoginPage() {
         return;
       }
       dispatcher(userActions.login(data.data.user_info));
+
       setTimeout(() => {
         GoServices();
       }, 200);

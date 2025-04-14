@@ -6,9 +6,19 @@ const { postRequest } = axiosConfig;
 
 const { paypal } = apiRoutes;
 
-const { capturePayment } = paypal;
+const { create_payment, create_order } = paypal;
 
 export const CapturePyPalAPI = () => {
   const url = `${NEXT_PUBLIC_API_URL}${capturePayment}`;
   return postRequest<any>(url);
+};
+
+export const PayPalCreateOrderAPI = (data: {
+  currency: string;
+  sku: "lifetme";
+  name: "lifetme";
+  price: number;
+}) => {
+  const url = `${NEXT_PUBLIC_API_URL}${create_order}`;
+  return postRequest<any>(url, data);
 };
