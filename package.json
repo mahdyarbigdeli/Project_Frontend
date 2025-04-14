@@ -18,6 +18,8 @@
     "@lottiefiles/dotlottie-react": "^0.10.0",
     "@mui/joy": "^5.0.0-beta.48",
     "@mui/material": "^6.1.8",
+    "@paypal/paypal-js": "^8.2.0",
+    "@paypal/react-paypal-js": "^8.8.3",
     "@reduxjs/toolkit": "^2.3.0",
     "@zxing/library": "^0.21.3",
     "ag-grid-react": "^32.3.3",

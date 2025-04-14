@@ -6,7 +6,7 @@ import { redirect, usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
-import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 
 import "react-toastify/dist/ReactToastify.css";
 
