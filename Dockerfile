@@ -5,13 +5,13 @@ WORKDIR /app
 
 COPY . .
 COPY package.json  ./
-RUN rm -rf .env 
+RUN rm -rf .env
 COPY ./devops/.env-dev /app/.env
 
-RUN cat .env 
-RUN npm install --legacy-peer-deps 
+RUN cat .env
+RUN npm install --legacy-peer-deps
 
-RUN npm run build 
+RUN npm run build
 
 RUN ls
 EXPOSE 3000
