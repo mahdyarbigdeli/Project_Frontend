@@ -43,6 +43,9 @@ export default function SubScriptionsPage() {
 
   const { isDesktop, isMobile } = useViewSize();
 
+
+  console.log(user)
+
   return (
     <PageContianer
       title='سرویس ها'
@@ -105,7 +108,7 @@ export default function SubScriptionsPage() {
                     <Button
                       icon={<Icon icon='mynaui:danger-diamond-solid' />}
                       onClick={() => {}}
-                      title='اشتراک شما غبیرفعال میباشد'
+                      title='اشتراک شما غیرفعال میباشد'
                       variant='danger'
                     />
                   )}

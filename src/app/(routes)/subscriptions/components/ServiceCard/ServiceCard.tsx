@@ -57,10 +57,10 @@ export default function ServiceCard(props: IProps) {
 
       <PayPalButton />
 
-      <img
+      {/* <img
         className={styles.paypal}
         src='/images/payments/paypal.png'
-      />
+      /> */}
     </div>
   );
 }
