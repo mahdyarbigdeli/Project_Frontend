@@ -1,3 +1,4 @@
+"use client";
 import Button from "@/components/UI/Button/Button";
 import Flex from "@/components/UI/Flex/Flex";
 import Grid from "@/components/UI/Grid/Grid";
@@ -18,7 +19,18 @@ interface IProps extends ISubscirption {}
 export default function ServiceCard(props: IProps) {
   const { user } = useGlobalStates();
 
-  const { id, name, price, name_en } = props;
+  const {
+    id,
+    name,
+    price,
+    name_en,
+    created_at,
+    end_date,
+    paypal_subscription_id,
+    start_date,
+    updated_at,
+    user_id,
+  } = props;
 
   const {
     isLoading,
@@ -42,7 +54,7 @@ export default function ServiceCard(props: IProps) {
         <small>$</small>
       </h2>
 
-      <Button
+      {/* <Button
         icon={<Icon icon='icon-park-solid:buy' />}
         onClick={() => {
           CreatePaymentMutate({
@@ -53,9 +65,16 @@ export default function ServiceCard(props: IProps) {
         title='خرید اشتراک'
         variant='danger'
         isLoading={isLoading}
-      />
+      /> */}
 
-      <PayPalButton />
+      <p>خرید اشتراک</p>
+
+      <PayPalButton
+        currency={"USD"}
+        name={name_en}
+        price={Number.parseFloat(price)}
+        sku={name_en}
+      />
 
       {/* <img
         className={styles.paypal}

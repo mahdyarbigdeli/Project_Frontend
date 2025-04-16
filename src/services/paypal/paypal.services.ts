@@ -2,6 +2,13 @@ const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
 import apiRoutes from "@/utils/apisRoutes";
 import axiosConfig from "@/utils/axiosConfig";
 
+export interface ICreateOrder {
+  currency: string;
+  sku: string;
+  name: string;
+  price: number;
+}
+
 const { postRequest } = axiosConfig;
 
 const { paypal } = apiRoutes;
@@ -13,12 +20,7 @@ export const CapturePyPalAPI = () => {
   return postRequest<any>(url);
 };
 
-export const PayPalCreateOrderAPI = (data: {
-  currency: string;
-  sku: "lifetme";
-  name: "lifetme";
-  price: number;
-}) => {
+export const PayPalCreateOrderAPI = (data: ICreateOrder) => {
   const url = `${NEXT_PUBLIC_API_URL}${create_order}`;
   return postRequest<any>(url, data);
 };

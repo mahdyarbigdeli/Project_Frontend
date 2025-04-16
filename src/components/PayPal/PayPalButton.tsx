@@ -1,9 +1,12 @@
-import { PayPalCreateOrderAPI } from "@/services/paypal/paypal.services";
+import {
+  ICreateOrder,
+  PayPalCreateOrderAPI,
+} from "@/services/paypal/paypal.services";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 const NEXT_PUBLIC_APP_PAYPAL_CLIENT_ID = process.env
   .NEXT_PUBLIC_APP_PAYPAL_CLIENT_ID as string;
 
-const PayPalCheckout = () => {
+const PayPalCheckout = (data: ICreateOrder) => {
   return (
     <PayPalScriptProvider
       options={{
@@ -18,13 +21,7 @@ const PayPalCheckout = () => {
           label: "paypal",
         }}
         createOrder={async () => {
-          const res: any = await PayPalCreateOrderAPI({
-            currency: "USD",
-            name: "lifetme",
-            price: 20,
-            sku: "lifetme",
-          });
-
+          const res: any = await PayPalCreateOrderAPI(data);
           return res.order_id; // return the PayPal order ID
         }}
         onApprove={async (data, actions) => {

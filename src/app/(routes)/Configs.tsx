@@ -24,24 +24,13 @@ const queryClient = new QueryClient({
 });
 
 export default function Configs({ children }: IProps) {
-  const initialOptions = {
-    "client-id":
-      "BAAxZ8X6Jrip-0ZbGzxyX2RQAC5PWapiFLZdprn8jIAXMFUUjFKI8YnuJqhbE0tolJ-FMavoXfDaUB6wUA",
-    clientId:
-      "BAAxZ8X6Jrip-0ZbGzxyX2RQAC5PWapiFLZdprn8jIAXMFUUjFKI8YnuJqhbE0tolJ-FMavoXfDaUB6wUA",
-    currency: "USD",
-    intent: "capture",
-  };
-
   return (
-    <PayPalScriptProvider options={initialOptions}>
-      <ReduxProvider>
-        <QueryClientProvider client={queryClient}>
-          <>{children}</>
-          <AuthChecker />
-          <ToastContainer autoClose={2000} />
-        </QueryClientProvider>
-      </ReduxProvider>
-    </PayPalScriptProvider>
+    <ReduxProvider>
+      <QueryClientProvider client={queryClient}>
+        <>{children}</>
+        <AuthChecker />
+        <ToastContainer autoClose={2000} />
+      </QueryClientProvider>
+    </ReduxProvider>
   );
 }

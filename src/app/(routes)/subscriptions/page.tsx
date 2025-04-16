@@ -164,6 +164,7 @@ export default function SubScriptionsPage() {
                   gridColumn={"-1/1"}
                   display='flex'
                   flexDirection='row-reverse'
+                  alignItems="start"
                   gap='1rem'
                   responsive={{
                     mobile: {
