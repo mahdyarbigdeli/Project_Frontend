@@ -12,6 +12,8 @@ const PayPalCheckout = (data: ICreateOrder) => {
       options={{
         clientId: NEXT_PUBLIC_APP_PAYPAL_CLIENT_ID,
         currency: "USD",
+        intent: "capture", 
+        commit: true,   
       }}>
       <PayPalButtons
         style={{
