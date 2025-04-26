@@ -10,12 +10,12 @@ const { postRequest, getRequest } = axiosConfig;
 
 export const LoginAPI = (data: ILogin) => {
   const url = `${NEXT_PUBLIC_API_URL}${login}`;
-  return postRequest<any>(url, null, {
-    params: {
+  return postRequest<any>(url,  {
+    // params: {
       username: data.email,
       email: data.email,
       password: data.password,
-    },
+    // },
   });
 };
 
