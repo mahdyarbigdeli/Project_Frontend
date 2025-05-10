@@ -7,6 +7,8 @@ export interface ICreateOrder {
   sku: string;
   name: string;
   price: number;
+  payment_source?:string
+  username?:string
 }
 
 const { postRequest } = axiosConfig;

@@ -74,6 +74,7 @@ export default function ServiceCard(props: IProps) {
         name={name_en}
         price={Number.parseFloat(price)}
         sku={name_en}
+        username={user.username}
       />
 
       {/* <img
