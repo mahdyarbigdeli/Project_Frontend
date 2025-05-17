@@ -39,6 +39,7 @@ const PayPalCheckout = (data: ICreateOrder) => {
         }}
         createOrder={async () => {
           const res: any = await PayPalCreateOrderAPI(data);
+        
           console.log(res.order_id)
           return res.order_id;
         }}
@@ -52,7 +53,7 @@ const PayPalCheckout = (data: ICreateOrder) => {
 
             console.log(result)
             if (result.status === "success") {
-              window.location.href = "https://bo.tamasha.me/api/paypal/payment-success";
+                window.location.href = `https://bo.tamasha.me/api/paypal/payment-success?token=${data.orderID}`;
             } else {
               window.location.href = "https://bo.tamasha.me/api/paypal/payment-cancel";
             }
