@@ -39,10 +39,7 @@ const PayPalCheckout = (data: ICreateOrder) => {
         }}
         createOrder={async () => {
           const res: any = await PayPalCreateOrderAPI(data);
-          console.log(res)
-          if (res.approval_url) {
-            window.location.href = res.approval_url; 
-          }
+          console.log(res.order_id)
           return res.order_id;
         }}
         onApprove={async (data, actions) => {
@@ -53,6 +50,7 @@ const PayPalCheckout = (data: ICreateOrder) => {
 
             const result = await res.json();
 
+            console.log(result)
             if (result.status === "success") {
               window.location.href = "https://bo.tamasha.me/api/paypal/payment-success";
             } else {
@@ -66,6 +64,10 @@ const PayPalCheckout = (data: ICreateOrder) => {
         onError={(error) => {
           console.error("PayPal Error:", error);
         }}
+        onCancel={() => {
+          window.location.href = "https://bo.tamasha.me/api/paypal/payment-cancel";
+        }}
+
       />
     </PayPalScriptProvider>
   );

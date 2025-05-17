@@ -44,8 +44,6 @@ export default function SubScriptionsPage() {
   const { isDesktop, isMobile } = useViewSize();
 
 
-  console.log(user)
-
   return (
     <PageContianer
       title='سرویس ها'
