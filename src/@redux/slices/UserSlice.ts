@@ -1,28 +1,28 @@
-import { IUser } from "@/types/auth.types";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import moment from "moment-jalaali";
+  import { IUser } from "@/types/auth.types";
+  import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+  import moment from "moment-jalaali";
 
-const initialState = {};
+  const initialState = {};
 
-const userSlice = createSlice({
-  name: "user",
-  initialState,
-  reducers: {
-    login: (state, { payload }: PayloadAction<IUser>) => {
-      return {
-        ...payload,
-        // exp_date: moment(parseInt(payload.exp_date) * 1000).toLocaleString(),
-      };
+  const userSlice = createSlice({
+    name: "user",
+    initialState,
+    reducers: {
+      login: (state, { payload }: PayloadAction<IUser>) => {
+        return {
+          ...payload,
+          // exp_date: moment(parseInt(payload.exp_date) * 1000).toLocaleString(),
+        };
+      },
+      logout: () => {
+        return {};
+      },
+      fetchUser: (state, { payload }: PayloadAction<IUser>) => {
+        return { ...state, ...payload};
+      },
     },
-    logout: () => {
-      return {};
-    },
-    fetchUser: (state) => {
-      return state;
-    },
-  },
-});
+  });
 
-export const userActions = userSlice.actions;
+  export const userActions = userSlice.actions;
 
-export default userSlice.reducer;
+  export default userSlice.reducer;

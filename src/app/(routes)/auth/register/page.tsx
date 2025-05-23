@@ -4,7 +4,7 @@ import Field from "@/components/UI/Field/Field";
 import { Form, FormikProvider, useFormik } from "formik";
 
 import { Icon } from "@iconify/react";
-import { LoginAPI, RegisterAPI } from "@/services/auth/auth.services";
+import { RegisterAPI } from "@/services/auth/auth.services";
 import { ILogin, IRegister } from "@/types/auth.types";
 import Button from "@/components/UI/Button/Button";
 import { useMutation } from "react-query";

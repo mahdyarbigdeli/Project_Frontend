@@ -8,6 +8,7 @@ const apiRoutes = {
     users: {
       list: "/auth/users/",
     },
+    userInfo: "/user/info",
     channels: {
       assigine: "/auth/channels/",
     },

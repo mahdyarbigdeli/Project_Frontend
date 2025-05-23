@@ -15,11 +15,11 @@ export default function Header() {
   const dispatch = useDispatch();
 
   const onLogoutClick = () => {
-    ShowQuestion({
-      onConfirm() {
-        dispatch(userActions.logout());
-      },
-    });
+    dispatch(userActions.logout());
+    // ShowQuestion({
+    //   onConfirm() {
+    //   },
+    // });
   };
 
   return (

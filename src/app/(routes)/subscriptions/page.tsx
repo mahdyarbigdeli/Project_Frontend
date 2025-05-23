@@ -16,8 +16,13 @@ import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import useViewSize from "@/hooks/useViewSize";
 import Slider from "@/components/UI/Slider/Slider";
+import { useQuery } from "react-query";
+import { FetchUserApi } from "@/services/auth/auth.services";
+import { userActions } from "@/@redux/slices/UserSlice";
+import { useDispatch } from "react-redux";
 export default function SubScriptionsPage() {
   const { user } = useGlobalStates();
+  const dispatcher = useDispatch();
 
   const {
     currentPage,
@@ -41,92 +46,99 @@ export default function SubScriptionsPage() {
     initialSorts: {},
   });
 
+  const {
+    data: userInfoData,
+    isLoading: fetchUserLoading,
+    error,
+  } = useQuery({
+    queryKey: ["user-info", user.username],
+    queryFn: () => FetchUserApi(user),
+    enabled: !!user?.username,
+    onSuccess(data) {
+      console.log(data);
+      dispatcher(userActions.fetchUser(data.data));
+    },
+  });
+
   const { isDesktop, isMobile } = useViewSize();
 
-
   return (
-    <PageContianer
-      title='سرویس ها'
-      isLoading={isLoading}>
+    <PageContianer title="سرویس ها" isLoading={isLoading}>
       <Box
-        header='سرویس ها'
+        header="سرویس ها"
         isFieldSet
         glassMorphism
-        icon={<Icon icon='file-icons:service-fabric' />}
+        icon={<Icon icon="file-icons:service-fabric" />}
         style={{
           width: "90dvw",
           maxWidth: "max-content",
           maxHeight: "90dvh",
-        }}>
+        }}
+      >
         <Grid
           gridTemplateColumns={"1fr"}
-          alignItems='start'
-          gap='0'
+          alignItems="start"
+          gap="0"
           responsive={{
             mobile: {
               gridTemplateColumns: "1fr",
             },
-          }}>
+          }}
+        >
           <Box
-            header='اطلاعات کاربری'
+            header="اطلاعات کاربری"
             isFieldSet
             glassMorphism
-            icon={<Icon icon='solar:user-bold' />}
+            icon={<Icon icon="solar:user-bold" />}
             style={{
               height: "max-content",
               display: "flex",
-            }}>
+            }}
+          >
             <Grid
-              color='white'
+              color="white"
               gridTemplateColumns={"1fr 1fr"}
               responsive={{
                 mobile: {
                   gridTemplateColumns: "1fr",
                 },
-              }}>
+              }}
+            >
               <Grid>
-                <Flex
-                  center
-                  flexDirection='column'>
+                <Flex center flexDirection="column">
                   <small>ایمیل : </small>
                   <h3>{user.username}</h3>
                 </Flex>
-                <Flex
-                  center
-                  flexDirection='column'>
+                <Flex center flexDirection="column">
                   <small>رمزعبور : </small>
                   <h3>{user.password}</h3>
                 </Flex>
               </Grid>
               <Grid>
-                <Flex
-                  center
-                  flexDirection='column'>
+                <Flex center flexDirection="column">
                   {user.status !== "Active" && (
                     <Button
-                      icon={<Icon icon='mynaui:danger-diamond-solid' />}
+                      icon={<Icon icon="mynaui:danger-diamond-solid" />}
                       onClick={() => {}}
-                      title='اشتراک شما غیرفعال میباشد'
-                      variant='danger'
+                      title="اشتراک شما غیرفعال میباشد"
+                      variant="danger"
                     />
                   )}
                   {user.status === "Active" && (
                     <Button
-                      icon={<Icon icon='nrk:check-active' />}
+                      icon={<Icon icon="nrk:check-active" />}
                       onClick={() => {}}
-                      title='اشتراک شما فعال میباشد'
-                      variant='success'
+                      title="اشتراک شما فعال میباشد"
+                      variant="success"
                     />
                   )}
                 </Flex>
-                <Flex
-                  center
-                  flexDirection='column'>
+                <Flex center flexDirection="column">
                   <small>تاریخ اتمام اشتراک : </small>
                   {/* (parseInt(user.exp_date) * 1000) as any) */}
                   <h3>
                     {moment(parseInt(user.exp_date) * 1000).format(
-                      "YYYY-MM-DD",
+                      "YYYY-MM-DD"
                     )}
                   </h3>
                 </Flex>
@@ -134,47 +146,44 @@ export default function SubScriptionsPage() {
             </Grid>
           </Box>
           <Box
-            header='خرید / تمدید اشتراک'
+            header="خرید / تمدید اشتراک"
             isFieldSet
             glassMorphism
-            icon={<Icon icon='lsicon:work-order-check-outline' />}>
+            icon={<Icon icon="lsicon:work-order-check-outline" />}
+          >
             <Grid>
               <Grid
                 gridTemplateColumns={"1fr"}
-                gap='2rem'
-                backgroundColor='var(--app-background-color)'
+                gap="2rem"
+                backgroundColor="var(--app-background-color)"
                 borderRadius={"1rem"}
                 padding={"2em"}
                 responsive={{
                   mobile: {
                     gridTemplateColumns: "1fr",
                   },
-                }}>
-                <Flex
-                  gridColumn={"-1/1"}
-                  center
-                  color='white'>
+                }}
+              >
+                <Flex gridColumn={"-1/1"} center color="white">
                   <p>خرید / تمدید اشتراک</p>
                 </Flex>
 
                 <Grid
                   width={"100%"}
                   gridColumn={"-1/1"}
-                  display='flex'
-                  flexDirection='row-reverse'
+                  display="flex"
+                  flexDirection="row-reverse"
                   alignItems="start"
-                  gap='1rem'
+                  gap="1rem"
                   responsive={{
                     mobile: {
                       flexDirection: "column-reverse",
                     },
-                  }}>
+                  }}
+                >
                   {data.map((subscription) => {
                     return (
-                      <ServiceCard
-                        key={subscription.id}
-                        {...subscription}
-                      />
+                      <ServiceCard key={subscription.id} {...subscription} />
                     );
                   })}
                 </Grid>
