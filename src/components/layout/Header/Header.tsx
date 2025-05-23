@@ -8,6 +8,7 @@ import { ShowQuestion } from "@/components/UI/Toast/toast";
 import { useDispatch } from "react-redux";
 import { userActions } from "@/@redux/slices/UserSlice";
 import useGlobalStates from "@/@redux/hooks/useGlobalStates";
+import Image from "next/image";
 
 export default function Header() {
   const { user } = useGlobalStates();
@@ -32,10 +33,12 @@ export default function Header() {
           className={styles.logOut}
         />
       )}
-      <img
+      <Image
         src='/images/logo/image.png'
         alt=''
-        className={styles.logo}
+        // className={styles.logo}
+        width={250}
+        height={60}
       />
     </header>
   );

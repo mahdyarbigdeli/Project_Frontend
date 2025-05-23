@@ -87,7 +87,7 @@ export default function LoginPage() {
                     icon={<Icon icon='entypo:email' />}
                     name='email'
                     onChange={handleChange}
-                    title='نام کاربری'
+                    title='ایمیل'
                     type='text'
                     value={values.email}
                     validation={{

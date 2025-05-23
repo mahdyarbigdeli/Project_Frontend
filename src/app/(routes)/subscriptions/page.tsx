@@ -88,7 +88,7 @@ export default function SubScriptionsPage() {
                 <Flex
                   center
                   flexDirection='column'>
-                  <small>نام کاربری : </small>
+                  <small>ایمیل : </small>
                   <h3>{user.username}</h3>
                 </Flex>
                 <Flex

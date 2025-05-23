@@ -59,7 +59,7 @@ export default function LoginPage() {
       email: yup
         .string()
         // .email("باید به فرمت ایمیل باشد")
-        .required("نام کاربری الزامی است."),
+        .required("ایمیل الزامی است."),
       period: yup.mixed().required("مدت دوره الزامی است"),
     }),
   });
@@ -99,7 +99,7 @@ export default function LoginPage() {
                     icon={<Icon icon='entypo:email' />}
                     name='email'
                     onChange={handleChange}
-                    title='نام کاربری'
+                    title='ایمیل'
                     type='text'
                     value={values.email}
                     validation={{
