@@ -5,6 +5,7 @@ const apiRoutes = {
     login: "/user/auth",
     register: "/user/create/",
     passwordForgot: "/user/forgot/password",
+    noPass: "/user/no-pass",
     users: {
       list: "/auth/users/",
     },

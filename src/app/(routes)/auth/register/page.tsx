@@ -4,7 +4,7 @@ import Field from "@/components/UI/Field/Field";
 import { Form, FormikProvider, useFormik } from "formik";
 
 import { Icon } from "@iconify/react";
-import { RegisterAPI } from "@/services/auth/auth.services";
+import { NoPassAPI, RegisterAPI } from "@/services/auth/auth.services";
 import { ILogin, IRegister } from "@/types/auth.types";
 import Button from "@/components/UI/Button/Button";
 import { useMutation } from "react-query";
@@ -19,6 +19,9 @@ import Flex from "@/components/UI/Flex/Flex";
 import * as yup from "yup";
 import { ShowSuccess } from "@/components/UI/Toast/toast";
 import Swal from "sweetalert2";
+
+export type NoPassResponse = { message: string } | { error: string };
+
 export default function LoginPage() {
   const dispatcher = useDispatch();
 
@@ -50,11 +53,24 @@ export default function LoginPage() {
       } as any,
       username: "",
     } as IRegister,
-    onSubmit(values) {
-      mutate({
-        ...values,
-        period: (values.period as any).value,
-      });
+    async onSubmit(values) {
+      try {
+        const noPassResponse = await NoPassAPI({ username: values.email });
+    
+        if ("message" in noPassResponse) {
+          ShowSuccess("کاربر موردنظر از قبل موجود می‌باشد.");
+          GoLogin();
+        }
+      } catch (error: any) {
+        if (error.response?.status === 404) {
+          mutate({
+            ...values,
+            period: (values.period as any).value,
+          });
+        } else {
+          console.error("Unexpected error:", error);
+        }
+      }
     },
     validationSchema: yup.object({
       email: yup
@@ -68,40 +84,41 @@ export default function LoginPage() {
   const { values, handleChange, submitForm, setFieldValue, errors } = formik;
 
   return (
-    <PageContianer
-      title='صفحه ثبت نام'
-      isLoading={isLoading}>
+    <PageContianer title="صفحه ثبت نام" isLoading={isLoading}>
       <FormikProvider value={formik}>
         <Form
           onSubmit={(e) => {
             e.preventDefault();
-          }}>
+          }}
+        >
           <Box
-            header='ثبت ایمیل'
-            icon={<Icon icon='material-symbols:login-sharp' />}
+            header="ثبت ایمیل"
+            icon={<Icon icon="material-symbols:login-sharp" />}
             isFieldSet
             glassMorphism
             style={{
               width: "90dvw",
               maxWidth: "25rem",
-            }}>
+            }}
+          >
             <Grid
-              gap='1rem'
+              gap="1rem"
               gridTemplateColumns={"20rem"}
-              alignItems='center'
+              alignItems="center"
               responsive={{
                 mobile: {
                   gridTemplateColumns: "1fr",
                 },
-              }}>
+              }}
+            >
               <Grid>
                 <Grid>
                   <Field
-                    icon={<Icon icon='entypo:email' />}
-                    name='email'
+                    icon={<Icon icon="entypo:email" />}
+                    name="email"
                     onChange={handleChange}
-                    title='ایمیل'
-                    type='text'
+                    title="ایمیل"
+                    type="text"
                     value={values.email}
                     validation={{
                       message: errors.email,
@@ -148,19 +165,20 @@ export default function LoginPage() {
                 </Grid> */}
                 <Grid>
                   <Button
-                    icon={<Icon icon='formkit:submit' />}
+                    icon={<Icon icon="formkit:submit" />}
                     onClick={submitForm}
-                    title='ثبت نام'
-                    variant='danger'
+                    title="ثبت نام"
+                    variant="danger"
                   />
                   <Flex
-                    color='white'
-                    alignItems='center'
+                    color="white"
+                    alignItems="center"
                     center
-                    cursor='pointer'
+                    cursor="pointer"
                     onClick={() => {
                       GoLogin();
-                    }}>
+                    }}
+                  >
                     <span>ورود کاربری</span>
                   </Flex>
                 </Grid>

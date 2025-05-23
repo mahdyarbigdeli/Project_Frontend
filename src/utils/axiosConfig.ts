@@ -47,6 +47,7 @@ axios.interceptors.response.use(
     const response = error.response;
     if (response) {
       const message = response.data.message || response.statusText;
+      if(message)
       ShowError(message);
 
       const errorCode = response.data?.errorData?.message;
