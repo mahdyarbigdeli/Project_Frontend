@@ -20,10 +20,11 @@ import { useQuery } from "react-query";
 import { FetchUserApi } from "@/services/auth/auth.services";
 import { userActions } from "@/@redux/slices/UserSlice";
 import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 export default function SubScriptionsPage() {
   const { user } = useGlobalStates();
   const dispatcher = useDispatch();
-
+  const [userInfo, setUserInfo] = useState(user ?? [])
   const {
     currentPage,
     data,
@@ -55,10 +56,19 @@ export default function SubScriptionsPage() {
     queryFn: () => FetchUserApi(user),
     enabled: !!user?.username,
     onSuccess(data) {
-      console.log(data);
+      // console.log(data);
       dispatcher(userActions.fetchUser(data.data));
     },
   });
+
+
+  useEffect(() => {
+    FetchUserApi(user).then(res => {
+      if (res && res.data)
+        setUserInfo(res?.data)
+    }
+    ).catch(error => console.log(error))
+  }, [])
 
   const { isDesktop, isMobile } = useViewSize();
 
@@ -119,7 +129,7 @@ export default function SubScriptionsPage() {
                   {user.status !== "Active" && (
                     <Button
                       icon={<Icon icon="mynaui:danger-diamond-solid" />}
-                      onClick={() => {}}
+                      onClick={() => { }}
                       title="اشتراک شما غیرفعال میباشد"
                       variant="danger"
                     />
@@ -127,7 +137,7 @@ export default function SubScriptionsPage() {
                   {user.status === "Active" && (
                     <Button
                       icon={<Icon icon="nrk:check-active" />}
-                      onClick={() => {}}
+                      onClick={() => { }}
                       title="اشتراک شما فعال میباشد"
                       variant="success"
                     />
@@ -137,7 +147,7 @@ export default function SubScriptionsPage() {
                   <small>تاریخ اتمام اشتراک : </small>
                   {/* (parseInt(user.exp_date) * 1000) as any) */}
                   <h3>
-                    {moment(parseInt(user.exp_date) * 1000).format(
+                    {moment(parseInt(userInfo.exp_date ?? user.exp_date) * 1000).format(
                       "YYYY-MM-DD"
                     )}
                   </h3>

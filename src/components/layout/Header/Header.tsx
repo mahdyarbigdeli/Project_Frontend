@@ -39,6 +39,8 @@ export default function Header() {
         // className={styles.logo}
         width={250}
         height={60}
+        className="h-60px] w-auto"
+         style={{ objectFit: 'contain' }}
       />
     </header>
   );
