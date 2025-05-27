@@ -31,9 +31,7 @@ export default function LoginPage() {
   const { mutate, isLoading } = useMutation({
     mutationFn: RegisterAPI,
     onSuccess: (data) => {
-      ShowSuccess("رمزعبور به ایمیل شما ارسال شده است.");
       dispatcher(userActions.login(data.data.user_info));
-
       Swal.fire({
         text: "رمزعبور به ایمیل شما ارسال گردید",
         icon: "success",
@@ -41,6 +39,7 @@ export default function LoginPage() {
       }).then((res) => {
         GoServices();
       });
+      // ShowSuccess("رمزعبور به ایمیل شما ارسال شده است.");
     },
   });
 
@@ -56,7 +55,6 @@ export default function LoginPage() {
     async onSubmit(values) {
       try {
         const noPassResponse = await NoPassAPI({ username: values.email });
-    
         if ("message" in noPassResponse) {
           ShowSuccess("کاربر موردنظر از قبل موجود می‌باشد.");
           GoLogin();

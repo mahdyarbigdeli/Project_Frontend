@@ -22,6 +22,7 @@ export interface IUser {
   max_connections: string;
   allowed_output_formats: string[];
   role: string;
+  expire_date?: string;
 }
 
 export const usersColDef: ColDef[] = [

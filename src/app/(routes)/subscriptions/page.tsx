@@ -56,19 +56,21 @@ export default function SubScriptionsPage() {
     queryFn: () => FetchUserApi(user),
     enabled: !!user?.username,
     onSuccess(data) {
-      // console.log(data);
       dispatcher(userActions.fetchUser(data.data));
+      setUserInfo(data.data); // ← If you need local state too
+      console.log(data?.data?.expire_date, userInfo);
     },
   });
 
-
-  useEffect(() => {
-    FetchUserApi(user).then(res => {
-      if (res && res.data)
-        setUserInfo(res?.data)
-    }
-    ).catch(error => console.log(error))
-  }, [])
+  // useEffect(() => {
+  //   FetchUserApi(user).then(res => {
+  //     if (res && res.data)
+  //       console.log(res, user)
+  //       console.log(res?.data)
+  //       setUserInfo(res?.data)
+  //   }
+  //   ).catch(error => console.log(error))
+  // }, [])
 
   const { isDesktop, isMobile } = useViewSize();
 
@@ -147,7 +149,7 @@ export default function SubScriptionsPage() {
                   <small>تاریخ اتمام اشتراک : </small>
                   {/* (parseInt(user.exp_date) * 1000) as any) */}
                   <h3>
-                    {moment(parseInt(userInfo.exp_date ?? user.exp_date) * 1000).format(
+                    {userInfo.expire_date ?? moment(parseInt(user.exp_date) * 1000).format(
                       "YYYY-MM-DD"
                     )}
                   </h3>
