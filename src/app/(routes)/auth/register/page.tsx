@@ -55,12 +55,24 @@ export default function LoginPage() {
     async onSubmit(values) {
       try {
         const noPassResponse = await NoPassAPI({ username: values.email });
+        console.log(noPassResponse)
         if ("message" in noPassResponse) {
           ShowSuccess("کاربر موردنظر از قبل موجود می‌باشد.");
           GoLogin();
         }
+        else {
+          console.log()
+        }
       } catch (error: any) {
         if (error.response?.status === 404) {
+          Swal.fire({
+            text: "رمزعبور به ایمیل شما ارسال گردید",
+            icon: "success",
+            confirmButtonText: "تایید",
+          }).then((res) => {
+            GoServices();
+          });
+
           mutate({
             ...values,
             period: (values.period as any).value,
