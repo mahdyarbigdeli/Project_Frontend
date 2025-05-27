@@ -24,24 +24,24 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
-      {user.username && (
-        <Button
-          icon={<Icon icon='line-md:logout' />}
-          onClick={onLogoutClick}
-          title='خروج از حساب'
-          variant='danger'
-          className={styles.logOut}
-        />
-      )}
-      <Image
-        src='/images/logo/image.png'
-        alt=''
-        // className={styles.logo}
-        width={250}
-        height={60}
-        className="h-60px] w-auto"
-         style={{ objectFit: 'contain' }}
+    {user.username && (
+      <Button
+        icon={<Icon icon="line-md:logout" />}
+        onClick={onLogoutClick}
+        title="خروج از حساب"
+        variant="danger"
+        className={styles.logOut}
       />
-    </header>
+    )}
+  
+    <Image
+      src="/images/logo/image.png"
+      alt="لوگو"
+      width={250}
+      height={60}
+      style={{ objectFit: 'contain' }}
+      className={styles.logo}
+    />
+  </header>
   );
 }
