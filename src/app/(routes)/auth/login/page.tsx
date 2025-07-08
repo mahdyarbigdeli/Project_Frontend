@@ -18,6 +18,7 @@ import useRedirect from "@/hooks/useRedirect";
 import Flex from "@/components/UI/Flex/Flex";
 import * as yup from "yup";
 import { ShowError, ShowSuccess } from "@/components/UI/Toast/toast";
+import Link from "next/link";
 export default function LoginPage() {
   const dispatcher = useDispatch();
 
@@ -50,7 +51,7 @@ export default function LoginPage() {
       mutate(values);
     },
     validationSchema: yup.object({
-      email: yup.string().required("ایمیل الزامی است"),
+      email: yup.string().required("نام کاربری الزامی است"),
       password: yup.string().required("رمز عبور الزامی است"),
     }),
   });
@@ -87,7 +88,7 @@ export default function LoginPage() {
                     icon={<Icon icon='entypo:email' />}
                     name='email'
                     onChange={handleChange}
-                    title='ایمیل'
+                    title='username'
                     type='text'
                     value={values.email}
                     validation={{
@@ -100,7 +101,7 @@ export default function LoginPage() {
                     icon={<Icon icon='mdi:password' />}
                     name='password'
                     onChange={handleChange}
-                    title='رمزعبور'
+                    title='password'
                     type='password'
                     value={values.password}
                     validation={{
@@ -131,6 +132,9 @@ export default function LoginPage() {
                     }}>
                     <span>ثبت نام</span>
                   </Flex>
+                  <Link href='https://tamasha.me' className="w-full" target="_blank">
+                    <div className="text-center mx-auto text-white"> بازگشت به سایت  </div>
+                  </Link>
                 </Grid>
               </Grid>
             </Grid>

@@ -55,7 +55,6 @@ export default function LoginPage() {
     async onSubmit(values) {
       try {
         const noPassResponse = await NoPassAPI({ username: values.email });
-        console.log(noPassResponse)
         if ("message" in noPassResponse) {
           ShowSuccess("کاربر موردنظر از قبل موجود می‌باشد.");
           GoLogin();
@@ -127,7 +126,7 @@ export default function LoginPage() {
                     icon={<Icon icon="entypo:email" />}
                     name="email"
                     onChange={handleChange}
-                    title="ایمیل"
+                    title="email"
                     type="text"
                     value={values.email}
                     validation={{
