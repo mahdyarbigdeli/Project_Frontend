@@ -163,7 +163,7 @@ export default function SubScriptionsPage() {
             glassMorphism
             icon={<Icon icon="lsicon:work-order-check-outline" />}
           >
-            <Grid>
+            {/* <Grid>
               <Grid
                 gridTemplateColumns={"1fr"}
                 gap="2rem"
@@ -200,6 +200,48 @@ export default function SubScriptionsPage() {
                   })}
                 </Grid>
               </Grid>
+            </Grid> */}
+
+
+            <Grid
+              style={{
+                gridTemplateColumns: "1fr",
+                gap: "2rem",
+                backgroundColor: "var(--app-background-color)",
+                borderRadius: "1rem",
+                padding: "2em",
+              }}
+              borderRadius={"1rem"}
+              padding={"2em"}
+              backgroundColor="var(--app-background-color)"
+            >
+              {/* عنوان */}
+              <Flex
+                style={{
+                  gridColumn: "1 / -1",
+                  justifyContent: "center",
+                  color: "white",
+                }}
+              >
+                <p>خرید / تمدید اشتراک</p>
+              </Flex>
+
+              {/* لیست اشتراک‌ها */}
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row-reverse",
+                  alignItems: "flex-start",
+                  gap: "1rem",
+                  width: "100%",
+                  flexWrap: "wrap",
+                }}
+                className="subscription-wrapper"
+              >
+                {data.map((subscription) => (
+                  <ServiceCard key={subscription.id} {...subscription} />
+                ))}
+              </div>
             </Grid>
           </Box>
         </Grid>
