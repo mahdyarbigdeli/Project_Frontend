@@ -132,9 +132,6 @@ export default function LoginPage() {
                     }}>
                     <span>ثبت نام</span>
                   </Flex>
-                  {/* <Link href='https://tamasha.me' className="w-full" target="_blank">
-                    <div className="text-center mx-auto text-white"> بازگشت به سایت  </div>
-                  </Link> */}
                   <Link href="https://tamasha.me" target="_blank" className="w-full text-center text-white">
                     <div className="w-full text-center text-white" style={{  textAlign: "center" }}>بازگشت به سایت</div>
                   </Link>
