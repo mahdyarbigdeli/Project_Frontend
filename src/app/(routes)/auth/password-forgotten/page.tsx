@@ -59,7 +59,8 @@ export default function LoginPage() {
       email: yup
         .string()
         // .email("باید به فرمت ایمیل باشد")
-        .required("ایمیل الزامی است."),
+        // .required("ایمیل الزامی است."),
+        .required("Email is required."),
       period: yup.mixed().required("مدت دوره الزامی است"),
     }),
   });
@@ -95,17 +96,20 @@ export default function LoginPage() {
               }}>
               <Grid>
                 <Grid>
+                    <div className="ltr-field">
                   <Field
                     icon={<Icon icon='entypo:email' />}
                     name='email'
                     onChange={handleChange}
-                    title='ایمیل'
+                    // title='ایمیل'
+                    title='Email'
                     type='text'
                     value={values.email}
                     validation={{
                       message: errors.email,
                     }}
                   />
+                  </div>
                 </Grid>
                 {/* <Grid>
                   <Field<any>
@@ -149,7 +153,7 @@ export default function LoginPage() {
                   <Button
                     icon={<Icon icon='formkit:submit' />}
                     onClick={submitForm}
-                    title='تایید'
+                    title='Submit'
                     variant='danger'
                   />
                   <Flex
@@ -160,7 +164,7 @@ export default function LoginPage() {
                     onClick={() => {
                       GoLogin();
                     }}>
-                    <span>ورود کاربری</span>
+                    <span>Login </span>
                   </Flex>
                 </Grid>
               </Grid>

@@ -56,7 +56,8 @@ export default function LoginPage() {
       try {
         const noPassResponse = await NoPassAPI({ username: values.email });
         if ("message" in noPassResponse) {
-          ShowSuccess("کاربر موردنظر از قبل موجود می‌باشد.");
+          // ShowSuccess("کاربر موردنظر از قبل موجود می‌باشد.");
+          ShowSuccess("User already exists.");
           GoLogin();
         }
         else {
@@ -65,9 +66,10 @@ export default function LoginPage() {
       } catch (error: any) {
         if (error.response?.status === 404) {
           Swal.fire({
-            text: "رمزعبور به ایمیل شما ارسال گردید",
+            // text: "رمزعبور به ایمیل شما ارسال گردید",
+            text: "The password has been sent to your email.",
             icon: "success",
-            confirmButtonText: "تایید",
+            confirmButtonText: "Submit",
           }).then((res) => {
             GoServices();
           });
@@ -84,8 +86,9 @@ export default function LoginPage() {
     validationSchema: yup.object({
       email: yup
         .string()
-        .email("باید به فرمت ایمیل باشد")
-        .required("ایمیل الزامی است"),
+        // .email("باید به فرمت ایمیل باشد")
+        .email("Must be in email format")
+        .required("Email is required."),
       period: yup.mixed().required("مدت دوره الزامی است"),
     }),
   });
@@ -122,17 +125,19 @@ export default function LoginPage() {
             >
               <Grid>
                 <Grid>
-                  <Field
-                    icon={<Icon icon="entypo:email" />}
-                    name="email"
-                    onChange={handleChange}
-                    title="email"
-                    type="text"
-                    value={values.email}
-                    validation={{
-                      message: errors.email,
-                    }}
-                  />
+                  <div className="ltr-field">
+                    <Field
+                      icon={<Icon icon="entypo:email" />}
+                      name="email"
+                      onChange={handleChange}
+                      title="email"
+                      type="text"
+                      value={values.email}
+                      validation={{
+                        message: errors.email,
+                      }}
+                    />
+                  </div>
                 </Grid>
                 {/* <Grid>
                   <Field<any>
@@ -176,7 +181,8 @@ export default function LoginPage() {
                   <Button
                     icon={<Icon icon="formkit:submit" />}
                     onClick={submitForm}
-                    title="ثبت نام"
+                    // title="ثبت نام"
+                    title="Register"
                     variant="danger"
                   />
                   <Flex
@@ -188,7 +194,7 @@ export default function LoginPage() {
                       GoLogin();
                     }}
                   >
-                    <span>ورود کاربری</span>
+                    <span>Login </span>
                   </Flex>
                 </Grid>
               </Grid>

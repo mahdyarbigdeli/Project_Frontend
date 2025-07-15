@@ -51,8 +51,8 @@ export default function LoginPage() {
       mutate(values);
     },
     validationSchema: yup.object({
-      email: yup.string().required("نام کاربری الزامی است"),
-      password: yup.string().required("رمز عبور الزامی است"),
+      email: yup.string().required("Username is required"),
+      password: yup.string().required("Password is required"),
     }),
   });
 
@@ -83,43 +83,51 @@ export default function LoginPage() {
                 },
               }}>
               <Grid>
-                <Grid>
-                  <Field
-                    icon={<Icon icon='entypo:email' />}
-                    name='email'
-                    onChange={handleChange}
-                    title='username'
-                    type='text'
-                    value={values.email}
-                    validation={{
-                      message: errors.email,
-                    }}
-                  />
+                <Grid >
+                  <div className="ltr-field">
+                    <Field
+                      icon={<Icon icon='entypo:email' />}
+                      name='email'
+                      onChange={handleChange}
+                      title='username'
+                      type='text'
+                      value={values.email}
+                      validation={{
+                        message: errors.email,
+                      }}
+                    />
+                  </div>
                 </Grid>
                 <Grid>
-                  <Field
-                    icon={<Icon icon='mdi:password' />}
-                    name='password'
-                    onChange={handleChange}
-                    title='password'
-                    type='password'
-                    value={values.password}
-                    validation={{
-                      message: errors.password,
-                    }}
-                  />
+                  <div className="ltr-field">
+                    <Field
+                      icon={<Icon icon='mdi:password' />}
+                      name='password'
+                      onChange={handleChange}
+                      title='password'
+                      type='password'
+                      value={values.password}
+                      validation={{
+                        message: errors.password,
+                      }}
+                    />
+                  </div>
                 </Grid>
                 <Grid
                   color='white'
-                  textAlign='right'
+                  textAlign='left'
                   cursor='pointer'>
-                  <p onClick={GoPasswordForgotten}>فراموشی رمز عبور</p>
+                  <p onClick={GoPasswordForgotten}>
+                    {/* فراموشی رمز عبور */}
+                    Forgot Password
+                  </p>
                 </Grid>
                 <Grid>
                   <Button
                     icon={<Icon icon='formkit:submit' />}
                     onClick={submitForm}
-                    title='ورود به پنل کاربری'
+                    // title='ورود به پنل کاربری'
+                    title='Login'
                     variant='danger'
                   />
                   <Flex
@@ -130,10 +138,11 @@ export default function LoginPage() {
                     onClick={() => {
                       GoRegister();
                     }}>
-                    <span>ثبت نام</span>
+                    {/* <span>ثبت نام</span> */}
+                    <span>Register </span>
                   </Flex>
                   <Link href="https://tamasha.me" target="_blank" className="w-full text-center text-white">
-                    <div className="w-full text-center text-white" style={{  textAlign: "center" }}>بازگشت به سایت</div>
+                    <div className="w-full text-center text-white" style={{ textAlign: "center" }}>Return to site  </div>
                   </Link>
                 </Grid>
               </Grid>

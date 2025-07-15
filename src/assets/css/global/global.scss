@@ -1,80 +1,99 @@
 @font-face {
-    font-family: iran-sans;
-    src: url("/fonts/IRAN-SANS/IRANSans\(FaNum\).ttf");
+  font-family: iran-sans;
+  src: url("/fonts/IRAN-SANS/IRANSans\(FaNum\).ttf");
 }
 @font-face {
-    font-family: iran-sans-latin-num;
-    src: url("/fonts/IRAN-SANS/iran-sans-normal.ttf");
+  font-family: iran-sans-latin-num;
+  src: url("/fonts/IRAN-SANS/iran-sans-normal.ttf");
 }
 
 @font-face {
-    font-family: anjoman;
-    src: url("/fonts/anjoman/AnjomanMax-Regular.woff2");
+  font-family: anjoman;
+  src: url("/fonts/anjoman/AnjomanMax-Regular.woff2");
 }
 
 .App {
-    height: 100dvh;
-    width: 100dvw;
-    overflow: auto;
-    background-color: var(--app-background-color);
+  height: 100dvh;
+  width: 100dvw;
+  overflow: auto;
+  background-color: var(--app-background-color);
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    text-decoration: none;
-    // font-family: iran-sans-latin-num;
-    font-family: anjoman;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  // font-family: iran-sans-latin-num;
+  font-family: anjoman;
 }
 
 .swal2-container {
-    z-index: 999999999999999 !important;
-    backdrop-filter: blur(20px);
-    background-color: rgba(0, 0, 0, 0.5) !important;
+  z-index: 999999999999999 !important;
+  backdrop-filter: blur(20px);
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  font-family: iran-sans !important;
+  * {
     font-family: iran-sans !important;
+  }
+  .swal2-popup {
+    font-size: 1rem !important;
+    width: max-content;
+    color: white;
+    border-radius: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
     * {
-        font-family: iran-sans !important;
+      font-family: iran-sans !important;
     }
-    .swal2-popup {
-        font-size: 1rem !important;
-        width: max-content;
-        color: white;
-        border-radius: 1rem;
-        background-color: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
 
-        * {
-            font-family: iran-sans !important;
-        }
-
-        .swal2-confirm {
-            background-color: var(--bs-danger) !important;
-        }
-
-        .swal2-deny {
-            background-color: white !important;
-            color: var(--bs-primary);
-            color: black;
-        }
-
-        button {
-            width: 6rem !important;
-            padding: 0.33em 1em;
-        }
+    .swal2-confirm {
+      background-color: var(--bs-danger) !important;
     }
+
+    .swal2-deny {
+      background-color: white !important;
+      color: var(--bs-primary);
+      color: black;
+    }
+
+    button {
+      width: 6rem !important;
+      padding: 0.33em 1em;
+    }
+  }
+}
+
+.ltr-field fieldset {
+  direction: ltr !important;
+  text-align: left !important;
+
+  input,
+  textarea,
+  select {
+    direction: ltr !important;
+    text-align: left !important;
+  }
+
+  label,
+  svg,
+  .icon {
+    text-align: left !important;
+    direction: ltr !important;
+  }
 }
 
 .Toastify {
-    z-index: 999999999999 !important;
-    font-family: anjoman !important;
-    * {
-        font-family: inherit !important;
-        direction: rtl;
-    }
+  z-index: 999999999999 !important;
+  font-family: anjoman !important;
+  * {
+    font-family: inherit !important;
+    direction: rtl;
+  }
 }
 
 .page-item {
-    background-color: transparent !important;
+  background-color: transparent !important;
 }
