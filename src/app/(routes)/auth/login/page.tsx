@@ -51,8 +51,8 @@ export default function LoginPage() {
       mutate(values);
     },
     validationSchema: yup.object({
-      email: yup.string().required("Username is required"),
-      password: yup.string().required("Password is required"),
+      email: yup.string().required("نام کاربری الزامی است"),
+      password: yup.string().required("  رمز عبور الزامی است"),
     }),
   });
 
@@ -89,7 +89,7 @@ export default function LoginPage() {
                       icon={<Icon icon='entypo:email' />}
                       name='email'
                       onChange={handleChange}
-                      title='username'
+                      title='نام کاربری'
                       type='text'
                       value={values.email}
                       validation={{
@@ -104,7 +104,7 @@ export default function LoginPage() {
                       icon={<Icon icon='mdi:password' />}
                       name='password'
                       onChange={handleChange}
-                      title='password'
+                      title='رمز عبور'
                       type='password'
                       value={values.password}
                       validation={{
@@ -118,16 +118,16 @@ export default function LoginPage() {
                   textAlign='left'
                   cursor='pointer'>
                   <p onClick={GoPasswordForgotten}>
-                    {/* فراموشی رمز عبور */}
-                    Forgot Password
+                    فراموشی رمز عبور
+                    {/* Forgot Password */}
                   </p>
                 </Grid>
                 <Grid>
                   <Button
                     icon={<Icon icon='formkit:submit' />}
                     onClick={submitForm}
-                    // title='ورود به پنل کاربری'
-                    title='Login'
+                    title='ورود به پنل کاربری'
+                    // title='Login'
                     variant='danger'
                   />
                   <Flex
@@ -138,11 +138,11 @@ export default function LoginPage() {
                     onClick={() => {
                       GoRegister();
                     }}>
-                    {/* <span>ثبت نام</span> */}
-                    <span>Register </span>
+                    <span>ثبت نام</span>
+                    {/* <span>Register </span> */}
                   </Flex>
                   <Link href="https://tamasha.me" target="_blank" className="w-full text-center text-white">
-                    <div className="w-full text-center text-white" style={{ textAlign: "center" }}>Return to site  </div>
+                    <div className="w-full text-center text-white" style={{ textAlign: "center" }}>  بازگشت به سایت  </div>
                   </Link>
                 </Grid>
               </Grid>

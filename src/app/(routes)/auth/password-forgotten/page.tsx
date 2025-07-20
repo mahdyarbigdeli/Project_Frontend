@@ -58,9 +58,9 @@ export default function LoginPage() {
     validationSchema: yup.object({
       email: yup
         .string()
-        // .email("باید به فرمت ایمیل باشد")
-        // .required("ایمیل الزامی است."),
-        .required("Email is required."),
+        .email("باید به فرمت ایمیل باشد")
+        .required("ایمیل الزامی است"),
+        // .required("Email is required."),
       period: yup.mixed().required("مدت دوره الزامی است"),
     }),
   });
@@ -101,8 +101,8 @@ export default function LoginPage() {
                     icon={<Icon icon='entypo:email' />}
                     name='email'
                     onChange={handleChange}
-                    // title='ایمیل'
-                    title='Email'
+                    title='ایمیل'
+                    // title='Email'
                     type='text'
                     value={values.email}
                     validation={{
@@ -153,7 +153,7 @@ export default function LoginPage() {
                   <Button
                     icon={<Icon icon='formkit:submit' />}
                     onClick={submitForm}
-                    title='Submit'
+                    title='تایید'
                     variant='danger'
                   />
                   <Flex
@@ -164,7 +164,7 @@ export default function LoginPage() {
                     onClick={() => {
                       GoLogin();
                     }}>
-                    <span>Login </span>
+                    <span>ورود </span>
                   </Flex>
                 </Grid>
               </Grid>
