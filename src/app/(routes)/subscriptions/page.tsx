@@ -73,7 +73,8 @@ export default function SubScriptionsPage() {
   // }, [])
 
   const { isDesktop, isMobile } = useViewSize();
-
+  const expiryTimestamp = Number(user?.exp_date) * 1000;
+  const _active: boolean = expiryTimestamp > Date.now();
   return (
     <PageContianer title="سرویس ها" isLoading={isLoading}>
       <Box
@@ -128,7 +129,7 @@ export default function SubScriptionsPage() {
               </Grid>
               <Grid>
                 <Flex center flexDirection="column">
-                  {user.status !== "Active" && (
+                  {(user.status !== "Active" || !_active) && (
                     <Button
                       icon={<Icon icon="mynaui:danger-diamond-solid" />}
                       onClick={() => { }}
@@ -136,7 +137,7 @@ export default function SubScriptionsPage() {
                       variant="danger"
                     />
                   )}
-                  {user.status === "Active" && (
+                  {(user.status === "Active" || _active) && (
                     <Button
                       icon={<Icon icon="nrk:check-active" />}
                       onClick={() => { }}
