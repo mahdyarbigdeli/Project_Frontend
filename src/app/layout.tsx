@@ -27,7 +27,7 @@ export default function RootLayout({
         crossOrigin='anonymous'
         async></Script> */}
 
-      <body className='App'>
+      <body className='overflow-x-hidden App'>
         <Configs>
           <Header />
           <>{children}</>
