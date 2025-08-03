@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en'>
+    <html lang='en' className="overflow-x-hidden">
       {/* <Script
         src='https://www.paypal.com/sdk/js?client-id=BAAxZ8X6Jrip-0ZbGzxyX2RQAC5PWapiFLZdprn8jIAXMFUUjFKI8YnuJqhbE0tolJ-FMavoXfDaUB6wUA&components=hosted-buttons&disable-funding=venmo&currency=USD'
         crossOrigin='anonymous'
