@@ -12,6 +12,7 @@
     background-color: var(--box-background);
     transition: all 0.5s ease;
     border-bottom: 0.5rem solid transparent;
+    margin: auto auto;
 
     &:hover {
         border-bottom: 0.5rem solid var(--bs-success);

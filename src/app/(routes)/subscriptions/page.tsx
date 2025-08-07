@@ -213,7 +213,7 @@ export default function SubScriptionsPage() {
                 padding: "2em",
               }}
               borderRadius={"1rem"}
-              padding={"2em"}
+              padding={"1em"}
               backgroundColor="var(--app-background-color)"
             >
               {/* عنوان */}
@@ -236,8 +236,10 @@ export default function SubScriptionsPage() {
                   gap: "1rem",
                   width: "100%",
                   flexWrap: "wrap",
+                  overflow: "hidden",
+                  margin: "auto"
                 }}
-                className="subscription-wrapper"
+                className="subscription-wrapper "
               >
                 {data.map((subscription) => (
                   <ServiceCard key={subscription.id} {...subscription} />
